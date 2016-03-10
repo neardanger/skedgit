@@ -1,0 +1,28 @@
+{
+  "name": "skedgit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonahhontos/skedgit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonahhontos/skedgit/issues"
+  },
+  "homepage": "https://github.com/jonahhontos/skedgit#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "express-ejs-layouts": "^2.0.0",
+    "mongoose": "^4.4.6",
+    "passport": "^0.3.2",
+    "yelp": "^1.0.1"
+  }
+}
