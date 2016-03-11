@@ -1,5 +1,6 @@
 var Yelp = require('yelp');
 
+
 var yelp = new Yelp({
   consumer_key: 'consumer-key',
   consumer_secret: 'consumer-secret',
@@ -30,3 +31,6 @@ yelp.business('yelp-san-francisco', function(err, data) {
   if (err) return console.log(error);
   console.log(data);
 });
+
+
+module.exports = yelp

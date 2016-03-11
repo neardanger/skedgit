@@ -3,19 +3,19 @@ var
   mongoose = require('mongoose'),
   app = express(),
   ejsLayouts = require('express-ejs-layouts'),
-  yelp = require('/api/yelp.js'),
-  userRoutes = require('/routes/user.js')
+  // yelp = require('./api/yelp.js'),
+  userRoutes = require('./routes/users.js'),
+  bodyParser = require('body-parser')
 
 // app config
-mongoose.connect('mongod://localhost/skedgit', function(err){
-  if(err) throw console.error(
-    console.log('connect to mongo');
-  );
+mongoose.connect('mongodb://localhost/skedgit', function(err){
+  if(err) throw err
+    console.log('connected to mongo');
 })
 //middleware
 app.use(ejsLayouts)
-app.use('view engine', 'ejs')
-app.use(boderParser.json())
+// app.use('view engine', 'ejs')
+app.use(bodyParser.json())
 app.use(express.static('/public'))
 
 //routes
