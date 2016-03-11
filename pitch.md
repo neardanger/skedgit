@@ -36,4 +36,3 @@
  ![profile_screen](wireframes/profile_screen.png)
 
 ### Data Model
-
