@@ -37,3 +37,9 @@
 
 ### Data Model
 
+- User
+  - contains user data (email, password, saved schedules[links as reference])
+- Schedule
+  - contains times and an array of businesses (embeded)
+- Business
+  - contains reference to a Yelp business id, plus parameters for quick display on frontend
