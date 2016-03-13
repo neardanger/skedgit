@@ -1,36 +1,13 @@
-var Yelp = require('yelp');
+// ----- Required Module ----- //
+var Yelp = require('yelp')
 
-
+// ----- Setup Keys for Yelp OATH ----- //
 var yelp = new Yelp({
-  consumer_key: 'consumer-key',
-  consumer_secret: 'consumer-secret',
-  token: 'token',
-  token_secret: 'token-secret',
-});
-
-// See http://www.yelp.com/developers/documentation/v2/search_api
-yelp.search({ term: 'food', location: 'Montreal' })
-.then(function (data) {
-  console.log(data);
+  consumer_key: 'tt-BmlOw8EPQHp0Tq-G7qg',
+  consumer_secret: 'U2liHDQtVnUdKnYA9CqpyXAUZLc',
+  token: 'gzfD3o3Y0nyCFnVhWz7wABm2NKLxOXR1',
+  token_secret: 'HX3bd96TrwthQYNrw6GBFdiKqzc',
 })
-.catch(function (err) {
-  console.error(err);
-});
 
-// See http://www.yelp.com/developers/documentation/v2/business
-yelp.business('yelp-san-francisco')
-  .then(console.log)
-  .catch(console.error);
-
-yelp.phoneSearch({ phone: '+15555555555' })
-  .then(console.log)
-  .catch(console.error);
-
-// A callback based API is also available:
-yelp.business('yelp-san-francisco', function(err, data) {
-  if (err) return console.log(error);
-  console.log(data);
-});
-
-
+// ----- Export Yelp Object ----- //
 module.exports = yelp

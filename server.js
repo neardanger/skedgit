@@ -5,7 +5,8 @@ var
   ejsLayouts = require('express-ejs-layouts'),
   // yelp = require('./api/yelp.js'),
   userRoutes = require('./routes/users.js'),
-  bodyParser = require('body-parser')
+  bodyParser = require('body-parser'),
+  yelpRoutes = require('./routes/yelp.js')
 
 // app config
 mongoose.connect('mongodb://localhost/skedgit', function(err){
@@ -20,7 +21,7 @@ app.use(express.static('/public'))
 
 //routes
 app.use('/users', userRoutes)
-
+app.use('/yelp', yelpRoutes)
 
 
 app.listen(3000, function(){
