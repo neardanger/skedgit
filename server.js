@@ -32,7 +32,6 @@ app.use(session({
 }))
 app.use(ejsLayouts)
 app.use(express.static(path.join(__dirname, '/public')))
-
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(bodyParser.json())
@@ -45,7 +44,7 @@ app.use(flash())
 app.get('/', function(req,res){
   res.sendFile(__dirname, '/index.html')
 })
-app.use('/users', userRoutes)
+app.use('/', userRoutes)
 app.use('/yelp', yelpRoutes)
 app.use('/schedules', scheduleRoutes)
 

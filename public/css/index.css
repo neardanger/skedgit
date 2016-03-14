@@ -1,3 +1,4 @@
+/*background video */
 video#bgvid {
     position: fixed;
     top: 50%;
@@ -15,7 +16,7 @@ video#bgvid {
     background-size: cover;
 }
 
-
+/*facebook button*/
 #facebookbtn {
   background: hsl(221, 39%, 44%);
   color: white;
