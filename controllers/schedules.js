@@ -14,7 +14,7 @@ module.exports = {
       res.json(schedule)
     })
   },
-  patch: function(req,res){
+  update: function(req,res){
     Schedule.findOneAndUpdate({_id: req.params.id}, function(err, schedule){
       if(err) throw err
       res.json(schedule)
