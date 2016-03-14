@@ -21,8 +21,12 @@ video#bgvid {
   background: hsl(221, 39%, 44%);
   color: white;
   padding: 5 15 5 15;
-  border-radius: 5%;
+  border-radius: 3px;
 }
 #whitebg {
-background: rgba(255,255,255,0.8); width: 50%; height: 60%
+  background: rgba(255,255,255,0.8);
+  padding: 20px;
+  margin-top: 75px;  
+  /*width: 50%;
+  height: 60%*/
 }
