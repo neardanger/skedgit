@@ -2,9 +2,12 @@
 var mongoose = require('mongoose')
 
 var userScehma = new mongoose.Schema({
-
-  name:{type:String, required:true, unique: true},
-  password:{type:String, required: true, unique: true}
+    facebook: {
+    id: String,
+    name: String,
+    token: String,
+    email: String
+  },
   schedules: [{type: mongoose.Schema.Types.ObjectId, ref: 'Schedule'}]
 })
 

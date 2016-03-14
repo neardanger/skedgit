@@ -1,3 +1,6 @@
+var
+  User = require('../models/User.js')
+
 module.exports = {
   profile: function(req,res){
     User.find({_id: req.params.id}, function(err,user){
