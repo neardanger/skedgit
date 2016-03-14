@@ -11,21 +11,38 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/second_view.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Testing View -->
 </head>
 
 <body>
 
-<div class="container">  
+<div class="container">
     <div class="content center col m8 offset-m2">
       <h5 class="header col s12 light">What do you want to do?</h5>
       <div class="row">
+        <div class="col s6">
+          <a class="waves-effect waves-light btn" href="#">Restaurants</a><br>
+          <!-- Dropdown Trigger -->
+          <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+
+          <!-- Dropdown Structure -->
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="#!">one</a></li>
+            <li><a href="#!">two</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">three</a></li>
+          </ul>
+        </div>
+        <div class="col s6">
+
+        </div>
       </div> <!-- /row -->
     </div> <!-- /content center col -->
 </div> <!-- /container -->
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 </body>
 
 
