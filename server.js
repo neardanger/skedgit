@@ -26,10 +26,10 @@ mongoose.connect('mongodb://localhost/skedgit', function(err){
 app.use(logger('dev'))
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended:true}))
-app.use(session({
-  secret: "Steven",
-  cookie: {_expires: 8000000}
-}))
+// app.use(session({
+//   secret: "Steven",
+//   cookie: {_expires: 8000000}
+// }))
 app.use(ejsLayouts)
 app.use(express.static(path.join(__dirname, '/public')))
 app.set('view engine', 'ejs')
