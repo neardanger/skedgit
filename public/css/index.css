@@ -14,3 +14,14 @@ video#bgvid {
     background: url("https://www.youtube.com/watch?v=3CMYQ290c5E") no-repeat;
     background-size: cover;
 }
+
+
+#facebookbtn {
+  background: hsl(221, 39%, 44%);
+  color: white;
+  padding: 5 15 5 15;
+  border-radius: 5%;
+}
+#whitebg {
+background: rgba(255,255,255,0.8); width: 50%; height: 60%
+}
