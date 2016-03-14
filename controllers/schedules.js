@@ -15,7 +15,7 @@ module.exports = {
     })
   },
   update: function(req,res){
-    Schedule.findOneAndUpdate({_id: req.params.id}, function(err, schedule){
+    Schedule.findOneAndUpdate({_id: req.params.id},req.body, function(err, schedule){
       if(err) throw err
       res.json(schedule)
     })
