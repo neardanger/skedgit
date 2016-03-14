@@ -18,12 +18,19 @@
   "homepage": "https://github.com/jonahhontos/skedgit#readme",
   "dependencies": {
     "bcrypt": "^0.8.5",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.1",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "express-ejs-layouts": "^2.0.0",
+    "express-session": "^1.13.0",
+    "l": "0.0.1",
     "mongoose": "^4.4.6",
+    "morgan": "^1.7.0",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.0",
     "path": "^0.12.7",
     "yelp": "^1.0.1"
   }
