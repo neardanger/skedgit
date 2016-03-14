@@ -39,6 +39,7 @@ This website simplifies making itineraries by giving you realtime access to Yelp
 
 ### Data Model
 
+
 - User
   - contains user data (email, password, saved schedules[links as reference])
 - Schedule
