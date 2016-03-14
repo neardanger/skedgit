@@ -1,0 +1,10 @@
+body {
+  background: #FdFdFd;
+}
+
+.content {
+  /*border-radius: 2px;*/
+  background: #FFF;
+  margin-top: 125px;
+  /*box-shadow: 1px 1px 3px #EEE;*/
+}
