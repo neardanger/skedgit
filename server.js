@@ -8,7 +8,14 @@ var
   bodyParser = require('body-parser'),
   yelpRoutes = require('./routes/yelp.js'),
   scheduleRoutes = require('./routes/schedules.js'),
-  path = require('path')
+  path = require('path'),
+  logger = require('morgan'),
+  cookieParser = require('cookie-parser'),
+  session = require('express-session'),
+  passport = require('passport'),
+  passportConfig = require('./config/passport.js'),
+  bcrypt = require('bcrypt-nodejs'),
+  flash = require('connect-flash')
 
 // app config
 mongoose.connect('mongodb://localhost/skedgit', function(err){
@@ -16,11 +23,23 @@ mongoose.connect('mongodb://localhost/skedgit', function(err){
     console.log('connected to mongo');
 })
 //middleware
+app.use(logger('dev'))
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(session({
+  secret: "Steven",
+  cookie: {_expires: 8000000}
+}))
 app.use(ejsLayouts)
 app.use(express.static(path.join(__dirname, '/public')))
-// app.use('view engine', 'ejs')
+
+app.set('view engine', 'ejs')
+app.use(ejsLayouts)
 app.use(bodyParser.json())
 app.use(express.static('/public'))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
 
 //routes
 app.get('/', function(req,res){

@@ -1,5 +1,8 @@
 //User model
 var mongoose = require('mongoose')
+var bcrypt = require('bcrypt-nodejs')
+
+
 
 var userScehma = new mongoose.Schema({
     facebook: {
@@ -11,6 +14,9 @@ var userScehma = new mongoose.Schema({
   schedules: [{type: mongoose.Schema.Types.ObjectId, ref: 'Schedule'}]
 })
 
+
+
 var User = mongoose.model('User', userScehma)
 
 module.exports = User
+  
