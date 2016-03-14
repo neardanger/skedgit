@@ -4,11 +4,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <title>Skedgit</title>
 
+  <!-- Javascript -->
+
   <!-- CSS  -->
-  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" href="/javascript/index.js" media="screen" title="no title" charset="utf-8">
+  <link href="./css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
   <!-- Testing View -->
@@ -17,9 +17,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-  <video autoplay loop muted id="bgvid" >
-  <source src="./videos/bgvideo.mp4#t=13,160" type="video/mp4">
- </video>
+  <video autoplay loop muted id="bgvid" src="./videos/bgvideo.mp4#t13,138" ></video>
 
   <div>
     <div class="section no-pad-bot">
@@ -39,12 +37,14 @@
                 <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                 <i class="material-icons"></i>
 
-                <h3>Login with facebook </h3>
+                <h3 style="color: white">Login with facebook </h3>
                 <hr>
                 <h4><a href="/auth/facebook" class="btn waves-effect waves-light">Facebook</a></h4>
               </div>
             </form>
           </div>
+          <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+          <script src="./javascript/index.js"></script>
         </body>
 
 

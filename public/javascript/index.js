@@ -1,11 +1,12 @@
-video = document.getElementById('#bgvid')
+v = document.getElementsByTagName("video")[0]
 
 
-video.addEventListener('loadedmetadata', function() {
-  this.currentTime = 13;
+v.addEventListener('play', function() {
+  console.log(this)
+  v.currentTime = 13;
 }, false);
-video.addEventListener("timeupdate", function() {
-    if (video.currentTime >= 138) {
-        this.currentTime = 13
+v.addEventListener("timeupdate", function() {
+    if (v.currentTime >= 136) {
+        v.currentTime = 13
     }
 }, false)
