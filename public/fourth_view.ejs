@@ -39,6 +39,9 @@
           </tr>
         </tbody>
       </table>
+      <% if(user.name) { %>
+      <a id="saveSchedule"class="btn teal active waves-effect waves-light btn">Save Schedule</a >
+        <% } %>
         </div>
       </div> <!-- /row -->
     </div> <!-- /content center col -->
@@ -49,7 +52,8 @@
   var prop = $('#searchProp')
   var search = $('#searchList')
   var tr = $('#trList')
-  var choice = [{ id:"tar-and-roses-santa-monica",category: "Restaurant", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/OrWLCrnxBfhEjeyDCPC19w/ms.jpg", name:"Tar & Roses" },{id:"the-misfit-restaurant-bar-santa-monica", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/Dvb6PZA56JLYRA-SNl5Ivw/ms.jpg", name: "The Misfit Restaurant + Bar", category: "Bar"},{id:'roccos-cheesecake-santa-monica',image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/BVZXOxC_Elyda1BU65IMig/ms.jpg",category: "Desert",name: "Rocco's Cheesecake"}]
+  var save = $('#saveSchedule')
+  var choice = [{ id:"tar-and-roses-santa-monica",rating_img_url_small: "",category: "Restaurant", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/OrWLCrnxBfhEjeyDCPC19w/ms.jpg", name:"Tar & Roses" },{id:"the-misfit-restaurant-bar-santa-monica", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/Dvb6PZA56JLYRA-SNl5Ivw/ms.jpg", name: "The Misfit Restaurant + Bar", category: "Bar"},{id:'roccos-cheesecake-santa-monica',image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/BVZXOxC_Elyda1BU65IMig/ms.jpg",category: "Desert",name: "Rocco's Cheesecake"}]
 function fillPage() {
   choice.forEach(function(b){
     prop.append(
@@ -60,7 +64,19 @@ function fillPage() {
     )
   })
   }
-
+  if()
+  save.on('click', function(){
+    choice.forEach(function(c){
+    $.ajax({
+      method: "post",
+      url: "/schedules"
+      data: JSON.stringify(c),
+      contentType: 'application/json'
+    }).done(function(schedule){
+       Materialize.toast('Saved Schedule', 4000).addClass("green")
+    })
+  })
+  })
   fillPage()
 
 
