@@ -13,3 +13,6 @@ body {
 a.btn {
   margin: 10px;
 }
+img {
+  border-radius: 25%;
+}
