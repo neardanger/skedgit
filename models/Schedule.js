@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 
 var businessSchema = new mongoose.Schema({
-  yelpId: String,
+  id: String,
   name: String,
   image_url: String,
   rating_img_url_small: String,

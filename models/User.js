@@ -19,4 +19,3 @@ var userScehma = new mongoose.Schema({
 var User = mongoose.model('User', userScehma)
 
 module.exports = User
-  
