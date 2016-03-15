@@ -28,8 +28,8 @@
         <div class="responsive-table">
 
       <table>
-        <thead>
-          <tr class="card-panel teal lighten-2">
+        <thead >
+          <tr class="card-panel teal lighten-2"id="searchProp" >
               <th data-field="id" >Name</th>
               <th data-field="name">Rating</th>
               <th data-field="price">About</th>
@@ -39,6 +39,12 @@
         </thead>
 
         <tbody id="searchList">
+          <tr id="trList"style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
         </div>
@@ -48,8 +54,20 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script type="text/javascript">
-  var choiceId = ["tar-and-roses-santa-monica","the-misfit-restaurant-bar-santa-monica",'roccos-cheesecake-santa-monica']
-
+  var prop = $('#searchProp')
+  var search = $('#searchList')
+  var tr = $('#trList')
+  var choice = ["tar-and-roses-santa-monica","the-misfit-restaurant-bar-santa-monica",'roccos-cheesecake-santa-monica']
+function fillPage()
+  choice.forEach(function(b){
+    prop.append(
+      '<th data-field="id" >'+ b.category + '</th>'
+    )
+    tr.append(
+      "<td>" + b.name + "<br><img src='"+ b.image_url +"'></td>"
+    )
+  })
+  })
 
 
 </script>
