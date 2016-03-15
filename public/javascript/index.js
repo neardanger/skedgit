@@ -1,6 +1,6 @@
 v = document.getElementsByTagName("video")[0]
 
-
+// run the video in the background and loops it
 v.addEventListener('play', function() {
   console.log(this)
   v.currentTime = 13;
