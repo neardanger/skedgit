@@ -51,7 +51,7 @@
 var search = $('#searchList')
 
 $(document).ready( function(){
-  var choiceId = []
+  var choice = []
 
   var currentStep = 0
 
@@ -75,6 +75,7 @@ $(document).ready( function(){
   }]
 
   var headings = ["Restaurants","Bars","Desserts"]
+  var businesses = []
 
   function populateList(){
     console.log(query[currentStep]);
@@ -86,14 +87,23 @@ $(document).ready( function(){
     }).done(function(result){
       search.html('')
       $('#heading').text(headings[currentStep])
-      result.businesses.forEach(function(b){
+      result.businesses.forEach(function(b, i){
+        businesses[i] = {
+          id: b.id,
+          name: b.name,
+          image_url: b.image_url,
+          rating_img_url_small: b.rating_img_url_small,
+          snippet_text: b.snippet_text,
+          display_address: b.location.display_address[0],
+          category: choice[currentStep]
+        }
         search.append(
                   '<tr style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">' +
                     "<td>" + b.name + "<br><img src='"+ b.image_url +"'></td>" +
                     "<td><img src='" + b.rating_img_url_small + "'></td>" +
                     "<td style='width: 350px'>" + b.snippet_text +'</td>' +
                     '<td>' + b.location.display_address[0] +'</td>' +
-                    '<td><a class="btn add-button" data-id="' + b.id + '">Add</a></td>' +
+                    '<td><a class="btn add-button" data-id="' + i + '">Add</a></td>' +
                   "</tr>"
                 )
       })
@@ -104,8 +114,8 @@ $(document).ready( function(){
 
   $('body').on('click','.add-button', function(evt){
     if (currentStep < query.length){
-      choiceId[currentStep] = $(evt.target).data("id")
-      console.log(choiceId[currentStep])
+      choice[currentStep] = businesses[$(evt.target).data("id")]
+      console.log(choice[currentStep])
       if(currentStep == 0) {
         var width = "50%"
       }
