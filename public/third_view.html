@@ -23,9 +23,9 @@
       <div class="row">
         <div class="col s10 offset-s1">
           <ul class="tabs">
-            <li class="tab col s3"><a class="teal-text" href="#step1">Step 1</a></li>
-            <li class="tab col s3 disabled"><a class="teal-text text-lighten-5" href="#test2">Step 2</a></li>
-            <li class="tab col s3 disabled"><a class="teal-text text-lighten-5" href="#test3">Step 3</a></li>
+            <li id="step0" class="tab col s3"><a class="teal-text" href="#step1">Step 1</a></li>
+            <li id="step1" class="tab col s3 disabled"><a class="teal-text text-lighten-5" href="#test2">Step 2</a></li>
+            <li id="step2" class="tab col s3 disabled"><a class="teal-text text-lighten-5" href="#test3">Step 3</a></li>
             <div class="indicator teal" style="z-index:1"></div>
           </ul>
 
@@ -33,7 +33,7 @@
       </div>
 
       <div class="row" style="margin: 0 auto;">
-          <h5 class="card-panel teal lighten-2" style="color: white;" href="#">Restaurants</h5><br>
+          <h5 class="card-panel teal lighten-2" id="heading" style="color: white;" href="#">Restaurants</h5><br>
         <div class="responsive-table">
 
       <table>
@@ -58,44 +58,71 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script type="text/javascript">
 var search = $('#searchList')
+
 $(document).ready( function(){
-  var query = {
+  var choiceId = []
+
+  var currentStep = 0
+
+  var query = [{
     query: {
       location: "santa+monica",
       category_filter: "restaurants"
     }
-  }
-  var query2 = {
+  },
+  {
     query: {
       location: "santa+monica",
       category_filter: "bars"
     }
-  }
-  var query3 = {
+  },
+  {
     query: {
       location: "santa+monica",
-      category_filter: "deserts"
+      category_filter: "desserts"
     }
-  }
-  $.ajax({
-    method: "post",
-    url: '/yelp/search',
-    data: JSON.stringify(query),
-    contentType: 'application/json'
-  }).done(function(result){
-    result.businesses.forEach(function(b){
-      search.append(
-                '<tr style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">' +
-                  "<td>" + b.name + "<br><img src='"+ b.image_url +"'></td>" +
-                  "<td><img src='" + b.rating_img_url_small + "'></td>" +
-                  "<td style='width: 350px'>" + b.snippet_text +'</td>' +
-                  '<td>' + b.location.display_address[0] +'</td>' +
-                  '<td><a class="btn">Add</a></td>' +
-                "</tr>"
-              )
+  }]
+
+  var headings = ["Restaurants","Bars","Desserts"]
+
+  function populateList(){
+    console.log(query[currentStep]);
+    $.ajax({
+      method: "post",
+      url: '/yelp/search',
+      data: JSON.stringify(query[currentStep]),
+      contentType: 'application/json'
+    }).done(function(result){
+      search.html('')
+      $('#heading').text(headings[currentStep])
+      result.businesses.forEach(function(b){
+        search.append(
+                  '<tr style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">' +
+                    "<td>" + b.name + "<br><img src='"+ b.image_url +"'></td>" +
+                    "<td><img src='" + b.rating_img_url_small + "'></td>" +
+                    "<td style='width: 350px'>" + b.snippet_text +'</td>' +
+                    '<td>' + b.location.display_address[0] +'</td>' +
+                    '<td><a class="btn add-button" data-id="' + b.id + '">Add</a></td>' +
+                  "</tr>"
+                )
+      })
     })
+  }
+
+  populateList()
+
+  $('body').on('click','.add-button', function(evt){
+    if (currentStep < query.length){
+      choiceId[currentStep] = $(evt.target).data("id")
+      currentStep++
+      console.log(currentStep)
+      $('#step' + currentStep)
+      populateList()
+    }
   })
 })
+
+
 
 </script>
 
