@@ -23,7 +23,7 @@
           <div class="determinate" style="width: 30%"></div>
       </div>
 
-      <div class="row" style="margin: 0 auto;">
+      <div class="row" style="margin: 0 auto;" id="row">
           <h5 class="card-panel teal lighten-2" id="heading" style="color: white;" href="#">Restaurants</h5><br>
         <div class="responsive-table">
 
@@ -49,6 +49,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script type="text/javascript">
 var search = $('#searchList')
+var $row = $('row')
 
 $(document).ready( function(){
   var choice = []
@@ -79,6 +80,7 @@ $(document).ready( function(){
 
   function populateList(){
     console.log(query[currentStep]);
+    $('#heading').after('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
     $.ajax({
       method: "post",
       url: '/yelp/search',
@@ -107,6 +109,8 @@ $(document).ready( function(){
                   "</tr>"
                 )
       })
+
+      $('#loady').remove()
     })
   }
 
@@ -114,6 +118,7 @@ $(document).ready( function(){
 
   $('body').on('click','.add-button', function(evt){
     if (currentStep < query.length){
+      $('html, body').animate({scrollTop:0}, 300)
       choice[currentStep] = businesses[$(evt.target).data("id")]
       console.log(choice[currentStep])
       if(currentStep == 0) {
