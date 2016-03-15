@@ -11,6 +11,7 @@
   <link href="css/second_view.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/nouislider.css" media="screen" title="no title" charset="utf-8">
   <!-- Testing View -->
 </head>
 
@@ -60,23 +61,11 @@
             </div>
 
             <div class="col s6">
-              <!-- Dropdown Trigger -->
-              <a class='dropdown-button waves-effect waves-light btn' href='#' data-hover="true" data-beloworigin="true" data-activates='times1'>Start</a><br>
-              <!-- Dropdown Structure -->
-              <ul id='times1' class='dropdown-content time-list'>
-              </ul>
-
-              <!-- Dropdown Trigger -->
-              <a class='dropdown-button waves-effect waves-light btn' href='#' data-hover="true" data-beloworigin="true" data-activates='times2'>Start</a><br>
-              <!-- Dropdown Structure -->
-              <ul id='times2' class='dropdown-content time-list'>
-              </ul>
-              <!-- Dropdown Trigger -->
-              <a class='dropdown-button waves-effect waves-light btn' href='#' data-hover="true" data-beloworigin="true" data-activates='times3'>Start</a><br>
-              <!-- Dropdown Structure -->
-              <ul id='times3' class='dropdown-content time-list'>
-              </ul>
+              <div id='time1' class="time-slider"></div><br>
+              <div id='time2' class="time-slider"></div><br>
+              <div id='time3' class="time-slider"></div><br>
             </div>
+
         </div> <!-- /row -->
       </div> <!-- /lower-content -->
 
@@ -85,13 +74,13 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-<script src='/javascript/wNumb.js'></script>
+<script src='/javascript/nouislider.js'></script>
 
 <script type="text/javascript">
 var $content = $('<div class="row"></div>')
 var $typesCol = $('<div class="col s6"></div>')
 var $times = $('.time-list')
-// var $
+
 
 // $content.append($typesCol)
 
@@ -106,6 +95,37 @@ $(document).ready(function(){
  )
     console.log(i)
   }})
+
+  for (var i=1; i<=3; i++){
+    var slider = document.getElementById('time' + i);
+    console.log(slider);
+      noUiSlider.create(slider, {
+       start: [14, 16],
+       connect: true,
+       step: 1,
+       range: {
+         'min': 1,
+         'max': 24
+       },
+       format: {
+         to: function(value){
+          if (value == 12) {
+            return value + "pm"
+          } else if (value == 24){
+            return (value - 12) + "am"
+          } else if (value > 12) {
+            return (value - 12) + "pm"
+          }
+          return value + "am"
+         },
+         from: function(value){
+          var returnValue = value.replace("am", '')
+          returnValue = value.replace("pm",'')
+          return returnValue
+         }
+       }
+    })
+  }
 
 </script>
 </body>
