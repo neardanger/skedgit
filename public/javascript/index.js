@@ -10,3 +10,5 @@ v.addEventListener("timeupdate", function() {
         v.currentTime = 13
     }
 }, false)
+
+$('img').addClass('materialboxed')
