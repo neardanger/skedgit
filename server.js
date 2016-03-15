@@ -18,7 +18,7 @@ var
   flash = require('connect-flash')
 
 // app config
-mongoose.connect('mongodb://localhost/skedgit', function(err){
+mongoose.connect('mongodb://neardanger:magadan312@ds015289.mlab.com:15289/skedgit', function(err){
   if(err) throw err
     console.log('connected to mongo');
 })
