@@ -65,6 +65,18 @@ $(document).ready( function(){
       category_filter: "restaurants"
     }
   }
+  var query2 = {
+    query: {
+      location: "santa+monica",
+      category_filter: "bars"
+    }
+  }
+  var query3 = {
+    query: {
+      location: "santa+monica",
+      category_filter: "deserts"
+    }
+  }
   $.ajax({
     method: "post",
     url: '/yelp/search',
@@ -73,13 +85,12 @@ $(document).ready( function(){
   }).done(function(result){
     result.businesses.forEach(function(b){
       search.append(
-                '<tr style="height: 200px;border-top: 1px solid black;border-bottom: 1px solid black">' +
+                '<tr style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">' +
                   "<td>" + b.name + "<br><img src='"+ b.image_url +"'></td>" +
                   "<td><img src='" + b.rating_img_url_small + "'></td>" +
                   "<td style='width: 350px'>" + b.snippet_text +'</td>' +
                   '<td>' + b.location.display_address[0] +'</td>' +
                   '<td><a class="btn">Add</a></td>' +
-
                 "</tr>"
               )
     })
