@@ -44,7 +44,7 @@ app.use(flash())
 app.get('/', function(req,res){
   res.sendFile(__dirname, '/index.html')
 })
-app.use('/', userRoutes)
+app.use('/users', userRoutes)
 app.use('/yelp', yelpRoutes)
 app.use('/schedules', scheduleRoutes)
 

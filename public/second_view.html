@@ -68,6 +68,7 @@
               <!-- Dropdown Structure -->
               <ul id='times1' class='dropdown-content time-list'>
               </ul>
+              
               <!-- Dropdown Trigger -->
               <a class='dropdown-button waves-effect waves-light btn' href='#' data-hover="true" data-beloworigin="true" data-activates='times2'>Start</a><br>
               <!-- Dropdown Structure -->
@@ -91,10 +92,10 @@
 <script type="text/javascript">
 var $content = $('<div class="row"></div>')
 var $typesCol = $('<div class="col s6"></div>')
-var times = $('.time-list')
+var $times = $('.time-list')
 // var $
 
-$content.append($typesCol)
+// $content.append($typesCol)
 
 $('#show-content').click(function(){
   $('#lower-content').append($content)
@@ -103,7 +104,7 @@ $('#show-content').click(function(){
 
 $(document).ready(function(){
   for(i=1; i < 13; i ++) {
-    times.append('<li><a href="#!">'+ i + ":00" +'</a></li>'
+    $times.append('<li><a href="#!">'+ i + ":00" +'</a></li>'
  )
     console.log(i)
   }})
