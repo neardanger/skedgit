@@ -7,7 +7,7 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/third_view.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/fourth_view.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Testing View -->
@@ -17,33 +17,25 @@
 
 <div class="container">
     <div class="content center col m8 offset-m2 z-depth-2">
-      <h5 class="header col s12 light">Suggested Schedules</h5>
+      <h5 class="header col s12 light">Schedules</h5>
 
       <div class="progress">
-          <div class="determinate" style="width: 30%"></div>
+          <div class="determinate" style="width: 90%"></div>
       </div>
 
       <div class="row" style="margin: 0 auto;">
-          <h5 class="card-panel teal lighten-2" id="heading" style="color: white;" href="#">Schedule</h5><br>
-        <div class="responsive-table">
+          <h5 class="card-panel teal lighten-2" id="heading" style="color: white;" href="#">Location</h5><br>
+        <div class="responsive-table ">
 
       <table>
         <thead >
           <tr class="card-panel teal lighten-2"id="searchProp" >
-              <th data-field="id" >Name</th>
-              <th data-field="name">Rating</th>
-              <th data-field="price">About</th>
-              <th data-field="address">Address</th>
-              <th data-field="add">Save</th>
+
           </tr>
         </thead>
 
         <tbody id="searchList">
-          <tr id="trList"style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr id="trList"  style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">
           </tr>
         </tbody>
       </table>
@@ -57,17 +49,19 @@
   var prop = $('#searchProp')
   var search = $('#searchList')
   var tr = $('#trList')
-  var choice = ["tar-and-roses-santa-monica","the-misfit-restaurant-bar-santa-monica",'roccos-cheesecake-santa-monica']
-function fillPage()
+  var choice = [{ id:"tar-and-roses-santa-monica",category: "Restaurant", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/OrWLCrnxBfhEjeyDCPC19w/ms.jpg", name:"Tar & Roses" },{id:"the-misfit-restaurant-bar-santa-monica", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/Dvb6PZA56JLYRA-SNl5Ivw/ms.jpg", name: "The Misfit Restaurant + Bar", category: "Bar"},{id:'roccos-cheesecake-santa-monica',image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/BVZXOxC_Elyda1BU65IMig/ms.jpg",category: "Desert",name: "Rocco's Cheesecake"}]
+function fillPage() {
   choice.forEach(function(b){
     prop.append(
-      '<th data-field="id" >'+ b.category + '</th>'
+      '<th class="center">'+ b.category + '</th>'
     )
     tr.append(
-      "<td>" + b.name + "<br><img src='"+ b.image_url +"'></td>"
+      "<td class='center'>" + b.name + "<br><img src='"+ b.image_url +"'></td>"
     )
   })
-  })
+  }
+
+  fillPage()
 
 
 </script>
