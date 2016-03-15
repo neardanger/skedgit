@@ -49,6 +49,11 @@ app.use('/yelp', yelpRoutes)
 app.use('/schedules', scheduleRoutes)
 
 
-app.listen(3000, function(){
-  console.log("Listening to port 3000");
-})
+
+app.set('port', (process.env.PORT || 3000));
+app.get('/', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
