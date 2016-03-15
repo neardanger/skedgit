@@ -12,7 +12,7 @@ video#bgvid {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url("https://www.youtube.com/watch?v=3CMYQ290c5E") no-repeat;
+    background: url("https://www.youtube.com/watch?v=bgEDSDsWbpY") no-repeat;
     background-size: cover;
 }
 
@@ -26,7 +26,7 @@ video#bgvid {
 #whitebg {
   background: rgba(255,255,255,0.8);
   padding: 20px;
-  margin-top: 75px;  
+  margin-top: 75px;
   /*width: 50%;
   height: 60%*/
 }
