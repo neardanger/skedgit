@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt-nodejs')
 
 
 
-var userScehma = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
     facebook: {
     id: String,
     name: String,
@@ -16,7 +16,6 @@ var userScehma = new mongoose.Schema({
 
 
 
-var User = mongoose.model('User', userScehma)
+var User = mongoose.model('User', userSchema)
 
 module.exports = User
-  
