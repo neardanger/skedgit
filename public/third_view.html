@@ -105,6 +105,7 @@ $(document).ready( function(){
   $('body').on('click','.add-button', function(evt){
     if (currentStep < query.length){
       choiceId[currentStep] = $(evt.target).data("id")
+      console.log(choiceId[currentStep])
       if(currentStep == 0) {
         var width = "50%"
       }
