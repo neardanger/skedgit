@@ -20,6 +20,7 @@ function slideBetween(el, next){
   return $(el)
 }
 
+
 // stage 1  //////////////////////////////////////////////////////////
 v = document.getElementsByTagName("video")[0]
 
@@ -35,7 +36,6 @@ v.addEventListener("timeupdate", function() {
 }, false)
 // users inputed location
 
-$('img').addClass('materialboxed')
 // switch between stages
 $('#submit-location').click(function(evt){
   slideBetween('#stage1','#stage2')
@@ -59,15 +59,6 @@ $('#show-content').click(function(){
   $('#lower-content').append($content)
   $('#show-content').remove()
 })
-// queryC = {
-//
-// }
-// $.ajax({
-//   method: "post",
-//   url: '/yelp/search',
-//   data: JSON.stringify(),
-//   contentType: 'application/json'
-// })
 
 // for the time slider
 $('#stage2-submit').click(function(){
@@ -175,14 +166,16 @@ $(document).ready(function(){
           // console.log("business foreach done");
           search.append(
                     '<tr style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">' +
-                      "<td class='center'>" + b.name + "<br><img src='"+ b.image_url +"'></td>" +
+                      "<td class='center'>" + b.name + "<br><img class='materialboxed' src='"+ b.image_url +"'></td>" +
                       "<td><img src='" + b.rating_img_url_small + "'></td>" +
                       "<td style='width: 350px'>" + b.snippet_text +'</td>' +
                       '<td>' + b.location.display_address[0] +'</td>' +
                       '<td><a class="btn add-button" data-id="' + i + '">Add</a></td>' +
                     "</tr>"
                   )
+
         })
+        $('.materialboxed').materialbox();
         // console.log("search append done");
 
         $('#loady').remove()
@@ -233,7 +226,7 @@ function fillPage() {
       '<th class="center">'+ b.category + '</th>'
     )
     tr.append(
-      "<td class='center'>" + b.name + "<br><img src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>"
+      "<td class='center'>" + b.name + "<br><img class='materialboxed' src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>"
     )
   })
   }
