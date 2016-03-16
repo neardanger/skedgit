@@ -38,7 +38,7 @@ v.addEventListener("timeupdate", function() {
 
 var whereTo
 
-$('img').addClass('materialboxed')
+// $('img').addClass('materialboxed')
 
 // switch between stages
 $('#submit-location').click(function(evt){
@@ -200,7 +200,7 @@ $('#stage2-submit').click(function(){
                   )
 
         })
-        $('.materialboxed').materialbox();
+        // $('.materialboxed').materialbox();
         // console.log("search append done");
 
         $('#loady').remove()
@@ -251,7 +251,7 @@ function fillPage() {
       '<th class="center">'+ b.category + '</th>'
     )
     tr.append(
-      "<td class='center'>" + b.name + "<br><img class='materialboxed' src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>"
+      "<td class='center'>" + b.name + "<br><img class='center' src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>"
     )
   })
   }
