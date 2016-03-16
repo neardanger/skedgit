@@ -105,8 +105,10 @@ function addScheduleItem(){
       }
     }
     scheduleItems.push(query[i])
-    $categoriesList.append('<div>'+query[i].query.term+'</div')
-    $timesList.append('<div id="time'+i+'" class="time-slider"></div><br>')
+    $categoriesList.append('<div>'+query[i].query.term+'</div><br>')
+    var $slider = $('<div id="time'+i+'" class="time-slider"></div><br>')
+    $categoriesList.append($slider)
+    console.log("$slider",$slider);
     addSlider(i)
   } else {
     Materialize.toast('Please enter a query', 2000, 'rounded red')
