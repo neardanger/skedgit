@@ -33,15 +33,20 @@ v.addEventListener("timeupdate", function() {
         v.currentTime = 13
     }
 }, false)
-
-
+// users inputed location
 
 $('img').addClass('materialboxed')
-
+// switch between stages
 $('#submit-location').click(function(evt){
   slideBetween('#stage1','#stage2')
+  var whereTo = $('#location_1').val()
+  whereTo = whereTo.replace(/\s+/g, "+")
+  whereTo = whereTo.replace(/^\s+|\s+$/g, "");
+  query.forEach(function(userL){
+    userL.query.location = whereTo
+  })
+  console.log(whereTo);
 })
-
 //  stage 2  //////////////////////////////////////////////////////////
 var $content = $('<div class="row"></div>')
 var $typesCol = $('<div class="col s6"></div>')
@@ -54,7 +59,17 @@ $('#show-content').click(function(){
   $('#lower-content').append($content)
   $('#show-content').remove()
 })
+// queryC = {
+//
+// }
+// $.ajax({
+//   method: "post",
+//   url: '/yelp/search',
+//   data: JSON.stringify(),
+//   contentType: 'application/json'
+// })
 
+// for the time slider
 $('#stage2-submit').click(function(){
   for (var i=1; i<=3; i++){
     var slider = document.getElementById('time' + i)
@@ -64,11 +79,14 @@ $('#stage2-submit').click(function(){
       end: values[1]
     }
   }
+  console.log(query);
   // console.log("times", times)
   populateList()
   slideBetween('#stage2','#stage3')
 })
 
+
+// for the time bar
 $(document).ready(function(){
   for (var i=1; i<=3; i++){
     var slider = document.getElementById('time' + i);
@@ -113,23 +131,22 @@ $(document).ready(function(){
 
     var query = [{
       query: {
-        location: "santa+monica",
+        location: "",
         category_filter: "restaurants"
       }
     },
     {
       query: {
-        location: "santa+monica",
+        location: "",
         category_filter: "bars"
       }
     },
     {
       query: {
-        location: "santa+monica",
+        location: "",
         category_filter: "desserts"
       }
     }]
-
     var headings = ["Restaurants","Bars","Desserts"]
     var businesses = []
 
