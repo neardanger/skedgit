@@ -11,7 +11,7 @@ module.exports = {
       if(err) console.log(err)
       console.log(user)
       res.render('profile', {user:{
-        id: user.facebook.id,
+        id: user.facebook,
         token: user.facebook,
         name: user.facebook,
         email: user.facebook
