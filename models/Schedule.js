@@ -15,7 +15,7 @@ var businessSchema = new mongoose.Schema({
 })
 
 var scheduleSchema = new mongoose.Schema({
-  user:[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
+  user:[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   name: {type: String, required: true},
   businesses: [businessSchema]
 
