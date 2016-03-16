@@ -36,12 +36,10 @@ v.addEventListener("timeupdate", function() {
 }, false)
 // users inputed location
 
-<<<<<<< HEAD
-=======
 var whereTo
 
 $('img').addClass('materialboxed')
->>>>>>> f61373a0e8654bb662748724183b5432c8348536
+
 // switch between stages
 $('#submit-location').click(function(evt){
   slideBetween('#stage1','#stage2')
@@ -92,18 +90,6 @@ function addSlider(i){
      }
   })
 }
-
-<<<<<<< HEAD
-$(document).ready(function(){
-   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-   $('.modal-trigger').leanModal();
-   function addScheduleItem(){
-
-   }
-   $('#add-schedule-item').click(addScheduleItem)
- });
-=======
->>>>>>> f61373a0e8654bb662748724183b5432c8348536
 
 var query = []
 
