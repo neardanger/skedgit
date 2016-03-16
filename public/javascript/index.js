@@ -38,7 +38,12 @@ v.addEventListener("timeupdate", function() {
 
 var whereTo
 
+<<<<<<< HEAD
 $('img').addClass('materialboxed')
+=======
+// $('img').addClass('materialboxed')
+
+>>>>>>> 48a7b9bef8b3c375461e66d1c604426c998c6ee3
 // switch between stages
 $('#submit-location').click(function(evt){
   slideBetween('#stage1','#stage2')
@@ -90,7 +95,10 @@ function addSlider(i){
   })
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 48a7b9bef8b3c375461e66d1c604426c998c6ee3
 var query = []
 
 function addScheduleItem(){
@@ -106,8 +114,10 @@ function addScheduleItem(){
       }
     }
     scheduleItems.push(query[i])
-    $categoriesList.append('<div>'+query[i].query.term+'</div')
-    $timesList.append('<div id="time'+i+'" class="time-slider"></div><br>')
+    $categoriesList.append('<div>'+query[i].query.term+'</div><br>')
+    var $slider = $('<div id="time'+i+'" class="time-slider"></div><br>')
+    $categoriesList.append($slider)
+    console.log("$slider",$slider);
     addSlider(i)
   } else {
     Materialize.toast('Please enter a query', 2000, 'rounded red')
@@ -198,7 +208,7 @@ $('#stage2-submit').click(function(){
                   )
 
         })
-        $('.materialboxed').materialbox();
+        // $('.materialboxed').materialbox();
         // console.log("search append done");
 
         $('#loady').remove()
@@ -300,7 +310,7 @@ function fillPage() {
       '<th class="center">'+ b.category + '</th>'
     )
     tr.append(
-      "<td class='center'>" + b.name + "<br><img class='materialboxed' src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>"
+      "<td class='center'>" + b.name + "<br><img class='center' src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>"
     )
   })
   }

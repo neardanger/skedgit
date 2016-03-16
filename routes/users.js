@@ -11,6 +11,8 @@ var
 
   userRouter.get('/auth/facebook/callback', userCtrl.faceBookLogin)
 
+  userRouter.get('/logout',userCtrl.faceBookLogout)
+
 
 
 
