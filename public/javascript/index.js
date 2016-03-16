@@ -214,22 +214,26 @@ function fillPage() {
   save.on('click', function(){
     console.log('on clicked');
 
-    var newSchedule = {
-      name: $('#schedule-name').val(),
-      businesses: []
+    if ($('#schedule-name').val()) {
+      var newSchedule = {
+        name: $('#schedule-name').val(),
+        businesses: []
+      }
+
+      console.log("newSchedule",newSchedule);
+      choice.forEach(function(c){
+        newSchedule.businesses.push(c)
+      })
+
+      $.ajax({
+        method: "post",
+        url: "/schedules",
+        data: JSON.stringify(newSchedule),
+        contentType: 'application/json'
+      }).done(function(){
+        Materialize.toast('Schedule saved!', 2000, 'rounded green')
+      })
+    } else {
+      Materialize.toast('Please name your schedule', 2000, 'rounded red')
     }
-
-    console.log("newSchedule",newSchedule);
-    choice.forEach(function(c){
-      newSchedule.businesses.push(c)
-    })
-
-    $.ajax({
-      method: "post",
-      url: "/schedules",
-      data: JSON.stringify(newSchedule),
-      contentType: 'application/json'
-    }).done(function(){
-      Materialize.toast('Schedule Saved!', 3000, 'rounded green')
-    })
   })
