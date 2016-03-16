@@ -68,14 +68,17 @@ function fillPage() {
 
   save.on('click', function(){
     console.log('on clicked');
+    
     var newSchedule = {
       name: $('#schedule-name').val(),
       businesses: []
     }
+
     console.log("newSchedule",newSchedule);
     choice.forEach(function(c){
       newSchedule.businesses.push(c)
     })
+
     $.ajax({
       method: "post",
       url: "/schedules",
