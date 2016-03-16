@@ -18,13 +18,18 @@
 <div class="container">
     <div class="content center col m8 offset-m2 z-depth-2">
       <h5 class="header col s12 light">Schedules</h5>
-      <p>
-                  <strong>id</strong>: <%= user.facebook.id %><br>
-                  <strong>token</strong>: <%= user.facebook.token %><br>
-                  <strong>name</strong>: <%= user.facebook.name %>
-                  <strong>email</strong>: <%= user.facebook.email %><br>
-      </p>
 
+      <% if (user.facebook.name){%>
+
+            <h3>Facebook User</h3>
+
+            <p>
+                <strong>Name</strong>: <%= user.facebook.name %><br>
+                <strong>id</strong>: <%= user.facebook.id %><br>
+                <strong>email</strong>: <%= user.facebook.email %><br>
+                <strong>token</strong>: <%= user.facebook.token %><br>
+            </p>
+            <% } %>
 
 
 
