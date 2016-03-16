@@ -35,21 +35,24 @@ v.addEventListener("timeupdate", function() {
 }, false)
 // users inputed location
 
+var whereTo
+
 $('img').addClass('materialboxed')
 // switch between stages
 $('#submit-location').click(function(evt){
   slideBetween('#stage1','#stage2')
-  var whereTo = $('#location_1').val()
+  whereTo = $('#location_1').val()
   whereTo = whereTo.replace(/\s+/g, "+")
   whereTo = whereTo.replace(/^\s+|\s+$/g, "");
-  query.forEach(function(userL){
-    userL.query.location = whereTo
-  })
+  // query.forEach(function(userL){
+  //   userL.query.location = whereTo
   console.log(whereTo);
 })
 //  stage 2  //////////////////////////////////////////////////////////
 var $content = $('<div class="row"></div>')
 var $typesCol = $('<div class="col s6"></div>')
+var $categoriesList = $('#categories-list')
+var $timesList = $('#times-list')
 
 var times = []
 var sliders = []
@@ -57,11 +60,11 @@ var scheduleItems = []
 
 // for the time bar
 function addSlider(i){
-  slider[i] = document.getElementById('time' + i);
-  // console.log(slider);
-  var timeStart = i==0 ? 9 : parseInt(slider[i-1].get()[1])
+  sliders[i] = document.getElementById('time' + i)
+  console.log("sliders[i]",sliders[i]);
+  var timeStart = 9 + (i * 2)
   var timeEnd = i<=25 ? timeStart + 2 : 27
-    noUiSlider.create(slider[i], {
+    noUiSlider.create(sliders[i], {
      start: [timeStart, timeEnd],
      connect: true,
      step: 1,
@@ -86,20 +89,35 @@ function addSlider(i){
   })
 }
 
-$(document).ready(function(){
-   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-   $('.modal-trigger').leanModal();
-   function addScheduleItem(){
-     
-   }
-   $('#add-schedule-item').click(addScheduleItem)
- });
 
+var query = []
 
+function addScheduleItem(){
+  var scheduleQuery = $('#schedule-query').val()
+
+  if(scheduleQuery){
+    var i = scheduleItems.length
+    console.log("i", i);
+    query[i]={
+      query: {
+        term: scheduleQuery,
+        location: whereTo
+      }
+    }
+    scheduleItems.push(query[i])
+    $categoriesList.append('<div>'+query[i].query.term+'</div')
+    $timesList.append('<div id="time'+i+'" class="time-slider"></div><br>')
+    addSlider(i)
+  } else {
+    Materialize.toast('Please enter a query', 2000, 'rounded red')
+  }
+}
+
+$('#add-schedule-item').click(addScheduleItem)
 
 // evaluate the times and move to next step
 $('#stage2-submit').click(function(){
-  for (var i=0; i<=sliders.length; i++){
+  for (var i=0; i<sliders.length; i++){
     var values = sliders[i].noUiSlider.get()
     times[i] = {
       start: values[0],
@@ -112,13 +130,6 @@ $('#stage2-submit').click(function(){
   slideBetween('#stage2','#stage3')
 })
 
-
-$(document).ready(function(){
-  for (var i=1; i<=3; i++){
-
-  }
-})
-
   // stage 3 //////////////////////////////////////////////////////////
   var search = $('#searchList')
   var $row = $('row')
@@ -128,39 +139,41 @@ $(document).ready(function(){
 
     var currentStep = 0
 
-    var query = [{
-      query: {
-        location: "",
-        category_filter: "restaurants"
-      }
-    },
-    {
-      query: {
-        location: "",
-        category_filter: "bars"
-      }
-    },
-    {
-      query: {
-        location: "",
-        category_filter: "desserts"
-      }
-    }]
-    var headings = ["Restaurants","Bars","Desserts"]
+    // var query = [{
+    //   query: {
+    //     location: "",
+    //     category_filter: "restaurants"
+    //   }
+    // },
+    // {
+    //   query: {
+    //     location: "",
+    //     category_filter: "bars"
+    //   }
+    // },
+    // {
+    //   query: {
+    //     location: "",
+    //     category_filter: "desserts"
+    //   }
+    // }]
+    // var headings = ["Restaurants","Bars","Desserts"]
     var businesses = []
 
     function populateList(){
       // console.log("populateList called");
       $('#heading').after('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
+      console.log("query[currentStep]",query[currentStep]);
       $.ajax({
         method: "post",
         url: '/yelp/search',
         data: JSON.stringify(query[currentStep]),
         contentType: 'application/json'
       }).done(function(result){
+        console.log("result",result);
         // console.log("$ ajax done called");
         search.html('')
-        $('#heading').text(headings[currentStep])
+        $('#heading').text(query[currentStep].query.term)
         result.businesses.forEach(function(b, i){
           businesses[i] = {
             id: b.id,
@@ -169,7 +182,7 @@ $(document).ready(function(){
             rating_img_url_small: b.rating_img_url_small,
             snippet_text: b.snippet_text,
             display_address: b.location.display_address[0],
-            category: headings[currentStep]
+            category: query[currentStep].query.term
           }
           // console.log("business foreach done");
           search.append(
