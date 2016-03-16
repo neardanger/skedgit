@@ -52,29 +52,56 @@ var $content = $('<div class="row"></div>')
 var $typesCol = $('<div class="col s6"></div>')
 
 var times = []
+var sliders = []
+var scheduleItems = []
 
-// $content.append($typesCol)
+// for the time bar
+function addSlider(i){
+  slider[i] = document.getElementById('time' + i);
+  // console.log(slider);
+  var timeStart = i==0 ? 9 : parseInt(slider[i-1].get()[1])
+  var timeEnd = i<=25 ? timeStart + 2 : 27
+    noUiSlider.create(slider[i], {
+     start: [timeStart, timeEnd],
+     connect: true,
+     step: 1,
+     range: {
+       'min': 5,
+       'max': 27
+     },
+     format: {
+       to: function(value){
+        if (value == 12) {return value + "pm"}
+        if (value == 24) {return (value - 12) + "am"}
+        if (value > 24) {return (value - 24) + "am"}
+        if (value > 12) {return (value - 12) + "pm"}
+        return value + "am"
+       },
+       from: function(value){
+        // var returnValue = value.replace("am", '')
+        // returnValue = value.replace("pm",'')
+        return value
+       }
+     }
+  })
+}
 
-$('#show-content').click(function(){
-  $('#lower-content').append($content)
-  $('#show-content').remove()
-})
-// queryC = {
-//
-// }
-// $.ajax({
-//   method: "post",
-//   url: '/yelp/search',
-//   data: JSON.stringify(),
-//   contentType: 'application/json'
-// })
+$(document).ready(function(){
+   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+   $('.modal-trigger').leanModal();
+   function addScheduleItem(){
+     
+   }
+   $('#add-schedule-item').click(addScheduleItem)
+ });
 
-// for the time slider
+
+
+// evaluate the times and move to next step
 $('#stage2-submit').click(function(){
-  for (var i=1; i<=3; i++){
-    var slider = document.getElementById('time' + i)
-    var values = slider.noUiSlider.get()
-    times[i-1] = {
+  for (var i=0; i<=sliders.length; i++){
+    var values = sliders[i].noUiSlider.get()
+    times[i] = {
       start: values[0],
       end: values[1]
     }
@@ -86,37 +113,9 @@ $('#stage2-submit').click(function(){
 })
 
 
-// for the time bar
 $(document).ready(function(){
   for (var i=1; i<=3; i++){
-    var slider = document.getElementById('time' + i);
-    // console.log(slider);
-      noUiSlider.create(slider, {
-       start: [14 + (i*2), 16 + (i*2)],
-       connect: true,
-       step: 1,
-       range: {
-         'min': 1,
-         'max': 24
-       },
-       format: {
-         to: function(value){
-          if (value == 12) {
-            return value + "pm"
-          } else if (value == 24){
-            return (value - 12) + "am"
-          } else if (value > 12) {
-            return (value - 12) + "pm"
-          }
-          return value + "am"
-         },
-         from: function(value){
-          // var returnValue = value.replace("am", '')
-          // returnValue = value.replace("pm",'')
-          return value
-         }
-       }
-    })
+
   }
 })
 

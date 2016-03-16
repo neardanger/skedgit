@@ -58,53 +58,46 @@
               <div class="determinate" style="width: 10%"></div>
           </div>
         </div><!-- /col s12 --><br>
-        <!-- <a class="btn" id="show-content" href="#">Add Content</a> -->
+
+        <a class="btn modal-trigger" id="add-schedule-item" href="#modal1">Add a Schedule Item</a>
+
+        <!-- Modal Trigger -->
+<!-- <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a> -->
+
 
       </div>
 
       <div id="lower-content">
         <div class="row">
           <div class="col s6" id="categories-list">
-              <!-- Dropdown Trigger -->
-              <a class='dropdown-button waves-effect waves-light btn' href='#' data-hover="true" data-beloworigin="true" data-activates='restaurant-categories'>Restaurants</a><br>
-              <!-- Dropdown Structure -->
-              <ul id='restaurant-categories' class='dropdown-content'>
-                <li><a href="#!">Mexican</a></li>
-                <li><a href="#!">Seafood</a></li>
-                <li><a href="#!">Diners</a></li>
-              </ul>
-              <!-- Dropdown Trigger -->
-              <a class='dropdown-button waves-effect waves-light btn' href='#' data-hover="true" data-beloworigin="true" data-activates='bar-categories'>Bars</a><br>
-              <!-- Dropdown Structure -->
-              <ul id='bar-categories' class='dropdown-content'>
-                <li><a href="#!">Breweries</a></li>
-                <li><a href="#!">Speakeasies</a></li>
-                <li><a href="#!">Dive Bars</a></li>
-              </ul>
-              <!-- Dropdown Trigger -->
-              <a class='dropdown-button waves-effect waves-light btn' href='#' data-hover="true" data-beloworigin="true" data-activates='desert-categories'>Deserts</a>
-              <!-- Dropdown Structure -->
-              <ul id='desert-categories' class='dropdown-content'>
-                <li><a href="#!">Mexican</a></li>
-                <li><a href="#!">Seafood</a></li>
-                <li><a href="#!">Diners</a></li>
-              </ul>
-            </div>
 
-            <div class="col s6">
-              <div id='time1' class="time-slider"></div><br>
-              <div id='time2' class="time-slider"></div><br>
-              <div id='time3' class="time-slider"></div><br>
-            </div>
+          </div>
+
+          <div class="col s6" id="times-list">
+            <div id='time1' class="time-slider"></div><br>
+            <div id='time2' class="time-slider"></div><br>
+            <div id='time3' class="time-slider"></div><br>
+          </div>
 
         </div> <!-- /row -->
         <a class="btn" id="stage2-submit">Done</a>
       </div> <!-- /lower-content -->
+  </div>
 
     </div> <!-- /content center col -->
 </div> <!-- /container -->
 </div>
 
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4 id="modal-header"></h4>
+    <div id="modal-body"></div>
+  </div>
+  <div id="modal-footer" class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+  </div>
+</div>
 
 <!-- ///////////////////////////////////////////////////////////// Stage 3 ////////////////////////////////////////////////// -->
 
