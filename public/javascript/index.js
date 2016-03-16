@@ -38,16 +38,15 @@ v.addEventListener("timeupdate", function() {
 
 $('img').addClass('materialboxed')
 
-$('#submit-location').click(function(){
+$('#submit-location').click(function(evt){
   slideBetween('#stage1','#stage2')
 })
 
 //  stage 2  //////////////////////////////////////////////////////////
 var $content = $('<div class="row"></div>')
 var $typesCol = $('<div class="col s6"></div>')
-var $times = $('.time-list')
 
-
+var times = []
 
 // $content.append($typesCol)
 
@@ -57,15 +56,25 @@ $('#show-content').click(function(){
 })
 
 $('#stage2-submit').click(function(){
+  for (var i=1; i<=3; i++){
+    var slider = document.getElementById('time' + i)
+    var values = slider.noUiSlider.get()
+    times[i-1] = {
+      start: values[0],
+      end: values[1]
+    }
+  }
+  // console.log("times", times)
   populateList()
   slideBetween('#stage2','#stage3')
 })
+
 $(document).ready(function(){
   for (var i=1; i<=3; i++){
     var slider = document.getElementById('time' + i);
     // console.log(slider);
       noUiSlider.create(slider, {
-       start: [14, 16],
+       start: [14 + (i*2), 16 + (i*2)],
        connect: true,
        step: 1,
        range: {
@@ -84,9 +93,9 @@ $(document).ready(function(){
           return value + "am"
          },
          from: function(value){
-          var returnValue = value.replace("am", '')
-          returnValue = value.replace("pm",'')
-          return returnValue
+          // var returnValue = value.replace("am", '')
+          // returnValue = value.replace("pm",'')
+          return value
          }
        }
     })
@@ -168,6 +177,7 @@ $(document).ready(function(){
       if (currentStep < (query.length)){
         $('html, body').animate({scrollTop:0}, 300)
         choice[currentStep] = businesses[$(evt.target).data("id")]
+        choice[currentStep].times = times[currentStep]
         console.log(choice[currentStep])
         if(currentStep == 0) {
           var width = "50%"
@@ -206,7 +216,7 @@ function fillPage() {
       '<th class="center">'+ b.category + '</th>'
     )
     tr.append(
-      "<td class='center'>" + b.name + "<br><img src='"+ b.image_url +"'></td>"
+      "<td class='center'>" + b.name + "<br><img src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>"
     )
   })
   }
