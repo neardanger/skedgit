@@ -9,7 +9,7 @@
   <link href="./css/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="/css/nouislider.css" media="screen" title="no title" charset="utf-8">
   <!-- Testing View -->
 </head>
 
@@ -34,7 +34,7 @@
               <div class="input-field">
                 <input value = "" id=location_1 type = "text" class = "validate" required>
                 <label class="active" for="first_name2" style="color: black">Where to?</label>
-                <button class="btn waves-effect waves-light" style="padding: 0 10 0 10;" type="submit" name="action">Submit</button>
+                <button id="submit-location" class="btn waves-effect waves-light" style="padding: 0 10 0 10;" name="action">Submit</button>
                 <i class="material-icons"></i>
                 <h6><a href="/users/auth/facebook" id="facebookbtn">Log In with Facebook</a></h6>
               </div>
@@ -98,6 +98,7 @@
             </div>
 
         </div> <!-- /row -->
+        <a class="btn" id="stage2-submit">Done</a>
       </div> <!-- /lower-content -->
 
     </div> <!-- /content center col -->
@@ -107,9 +108,9 @@
 
 <!-- ///////////////////////////////////////////////////////////// Stage 3 ////////////////////////////////////////////////// -->
 
-<div id="stage 3" class="hide">
+<div id="stage3" class="hide">
 <div class="container">
-    <div class="content center col m8 offset-m2 z-depth-2">
+    <div class="content center col m8 offset-m2 z-depth-2" id="stage3-content">
       <h5 class="header col s12 light">Suggested Schedules</h5>
 
       <div class="progress">
@@ -130,6 +131,8 @@
               <th data-field="add">Add</th>
           </tr>
         </thead>
+        <tbody id="searchList">
+        </tbody>
       </table>
         </div>
       </div> <!-- /row -->
@@ -180,6 +183,8 @@
 
 
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script src='/javascript/nouislider.js'></script>
 <script src="./javascript/index.js"></script>
 <script type="text/javascript">
 

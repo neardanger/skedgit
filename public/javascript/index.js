@@ -1,3 +1,25 @@
+function slideOutLeft(el){
+  $(el).animate({marginLeft: "-1000px", opacity: "0"}, 250, function(){
+    $(el).hide()
+  })
+  return $(el)
+}
+
+function slideInLeft(el){
+  $(el).css({marginLeft: "1000px", opacity: "0"})
+  $(el).removeClass('hide')
+  $(el).animate({marginLeft: "0", opacity: "1"}, 250)
+  return $(el)
+}
+
+function slideBetween(el, next){
+  $(el).animate({marginLeft: "-1000px", opacity: "0"}, 250, function(){
+    $(el).hide()
+    slideInLeft(next)
+  })
+  return $(el)
+}
+
 // stage 1  //////////////////////////////////////////////////////////
 v = document.getElementsByTagName("video")[0]
 
@@ -12,13 +34,19 @@ v.addEventListener("timeupdate", function() {
     }
 }, false)
 
+
+
 $('img').addClass('materialboxed')
 
+$('#submit-location').click(function(){
+  slideBetween('#stage1','#stage2')
+})
 
 //  stage 2  //////////////////////////////////////////////////////////
 var $content = $('<div class="row"></div>')
 var $typesCol = $('<div class="col s6"></div>')
 var $times = $('.time-list')
+
 
 
 // $content.append($typesCol)
@@ -28,13 +56,11 @@ $('#show-content').click(function(){
   $('#show-content').remove()
 })
 
+$('#stage2-submit').click(function(){
+  populateList()
+  slideBetween('#stage2','#stage3')
+})
 $(document).ready(function(){
-  for(i=1; i < 13; i ++) {
-    $times.append('<li><a href="#!">'+ i + ":00" +'</a></li>'
- )
-    console.log(i)
-  }})
-
   for (var i=1; i<=3; i++){
     var slider = document.getElementById('time' + i);
     console.log(slider);
@@ -65,12 +91,13 @@ $(document).ready(function(){
        }
     })
   }
+})
 
   // stage 3 //////////////////////////////////////////////////////////
   var search = $('#searchList')
   var $row = $('row')
 
-  $(document).ready( function(){
+
     var choice = []
 
     var currentStep = 0
@@ -133,10 +160,8 @@ $(document).ready(function(){
       })
     }
 
-    populateList()
-
     $('body').on('click','.add-button', function(evt){
-      if (currentStep < query.length){
+      if (currentStep < (query.length - 1)){
         $('html, body').animate({scrollTop:0}, 300)
         choice[currentStep] = businesses[$(evt.target).data("id")]
         console.log(choice[currentStep])
@@ -154,9 +179,11 @@ $(document).ready(function(){
         console.log(currentStep)
         $('#step' + currentStep)
         populateList()
+      } else {
+        slideBetween('#stage3', '#stage4')
       }
     })
-  })
+
 
 
   // stage 4  //////////////////////////////////////////////////////////
