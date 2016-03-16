@@ -68,6 +68,9 @@ app.use(flash())
 app.get('/', function(req,res){
   res.sendFile(__dirname, '/index.html')
 })
+app.get('/undefined', function(req,res){
+  res.json({})
+})
 
 app.use('/users', userRoutes)
 app.use('/yelp', yelpRoutes)
