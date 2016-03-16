@@ -22,6 +22,7 @@ mongoose.connect('mongodb://neardanger:magadan312@ds015289.mlab.com:15289/skedgi
   if(err) throw err
     console.log('connected to mongo');
 })
+
 //middleware
 app.use(logger('dev'))
 app.use(cookieParser())
@@ -40,10 +41,34 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 
+// app.dynamicHelpers({
+//     user: function(req, res){
+//         var name, id, schedules
+//
+//         if (req.session && req.session.auth == true) {
+//             name = req.session.user.facebook.name
+//             id = req.session.user.facebook.id
+//             schedules = req.session.user.schedules
+//         }
+//         else {
+//             name = null
+//             id = null
+//             schedules = null
+//         }
+//
+//         return {
+//             name: name,
+//             id: id,
+//             schedules: schedules
+//         }
+//     }
+// })
+
 //routes
 app.get('/', function(req,res){
   res.sendFile(__dirname, '/index.html')
 })
+
 app.use('/users', userRoutes)
 app.use('/yelp', yelpRoutes)
 app.use('/schedules', scheduleRoutes)

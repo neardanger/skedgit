@@ -25,6 +25,11 @@ module.exports = {
       if(err) throw err
       res.json(schedule)
     })
+  },
+  index: function(req,res){
+    Schedule.find({}, function(err, schedules){
+      res.json(schedules)
+    })
   }
 
 }

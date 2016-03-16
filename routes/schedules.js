@@ -11,5 +11,7 @@ schedulesRouter.post('/', schedulesCtrl.post)
 schedulesRouter.patch('/:id', schedulesCtrl.update)
 // delete a schedule
 schedulesRouter.delete('/:id', schedulesCtrl.delete)
+// show all schedules
+schedulesRouter.get('/', schedulesCtrl.index)
 
 module.exports = schedulesRouter
