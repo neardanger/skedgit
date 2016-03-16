@@ -7,15 +7,12 @@ module.exports = {
 
 
   profile: function(req,res){
-    User.find({_id: req.params.id}, function(err,user){
+    User.findOne({_id: req.params.id}, function(err,user){
       if(err) console.log(err)
       console.log(user)
-      res.render('profile', {user:{
-        id: user.facebook,
-        token: user.facebook,
-        name: user.facebook,
-        email: user.facebook
-      }})
+      res.render('profile', {user:user})
+      console.log(req.user)
+
     })
   },
 
