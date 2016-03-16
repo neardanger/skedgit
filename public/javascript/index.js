@@ -125,7 +125,7 @@ $(document).ready(function(){
     var businesses = []
 
     function populateList(){
-      console.log(query[currentStep]);
+      console.log("populateList called");
       $('#heading').after('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
       $.ajax({
         method: "post",
@@ -133,6 +133,7 @@ $(document).ready(function(){
         data: JSON.stringify(query[currentStep]),
         contentType: 'application/json'
       }).done(function(result){
+        console.log("$ ajax done called");
         search.html('')
         $('#heading').text(headings[currentStep])
         result.businesses.forEach(function(b, i){
@@ -145,6 +146,7 @@ $(document).ready(function(){
             display_address: b.location.display_address[0],
             category: choice[currentStep]
           }
+          console.log("business foreach done");
           search.append(
                     '<tr style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">' +
                       "<td class='center'>" + b.name + "<br><img src='"+ b.image_url +"'></td>" +
@@ -155,9 +157,11 @@ $(document).ready(function(){
                     "</tr>"
                   )
         })
+        console.log("search append done");
 
         $('#loady').remove()
       })
+      console.log('populateList complete');
     }
 
     $('body').on('click','.add-button', function(evt){
@@ -175,10 +179,12 @@ $(document).ready(function(){
           var width = "90%"
         }
         $('.determinate').css({width: width})
-        currentStep++
-        console.log(currentStep)
-        $('#step' + currentStep)
-        populateList()
+        if(currentStep != (query.length-1)){
+          currentStep++
+          console.log("currentStep", currentStep)
+          // $('#step' + currentStep)
+          populateList()
+        }
       } else {
         slideBetween('#stage3', '#stage4')
       }
@@ -190,6 +196,7 @@ $(document).ready(function(){
   var prop = $('#searchProp')
   var tr = $('#trList')
   var save = $('#saveSchedule')
+  console.log(choice);
   var choice = [{ id:"tar-and-roses-santa-monica",rating_img_url_small: "",category: "Restaurant", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/OrWLCrnxBfhEjeyDCPC19w/ms.jpg", name:"Tar & Roses" },{id:"the-misfit-restaurant-bar-santa-monica", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/Dvb6PZA56JLYRA-SNl5Ivw/ms.jpg", name: "The Misfit Restaurant + Bar", category: "Bar"},{id:'roccos-cheesecake-santa-monica',image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/BVZXOxC_Elyda1BU65IMig/ms.jpg",category: "Desert",name: "Rocco's Cheesecake"}]
 function fillPage() {
   choice.forEach(function(b){
