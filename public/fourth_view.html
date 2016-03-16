@@ -40,9 +40,9 @@
         </tbody>
       </table>
       <% if(user.name) { %>
-        <input type="text" name="name" value="" placeholder="Schedule Name">
-      <a id="saveSchedule"class="btn teal active waves-effect waves-light btn">Save Schedule</a >
-        <% } %>
+        <input id="schedule-name" type="text" name="name" value="" placeholder="Schedule Name">
+        <a id="saveSchedule"class="btn teal active waves-effect waves-light btn">Save Schedule</a >
+      <% } %>
         </div>
       </div> <!-- /row -->
     </div> <!-- /content center col -->
@@ -65,17 +65,27 @@ function fillPage() {
     )
   })
   }
+
   save.on('click', function(){
+    console.log('on clicked');
+    var newSchedule = {
+      name: $('#schedule-name').val(),
+      businesses: []
+    }
+    console.log("newSchedule",newSchedule);
     choice.forEach(function(c){
+      newSchedule.businesses.push(c)
+    })
     $.ajax({
       method: "post",
       url: "/schedules",
-      data: JSON.stringify(c),
+      data: JSON.stringify(newSchedule),
       contentType: 'application/json'
+    }).done(function(){
+      Materialize.toast('Schedule Saved!', 3000, 'rounded green')
     })
   })
-  Materialize.toast('Schedule Saved!', 3000, 'rounded green')
-  })
+
   fillPage()
 
 
