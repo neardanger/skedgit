@@ -48,9 +48,11 @@
       method: "get",
       url: "/users/:id"
     }).done(function(user){
+      user.schedules.forEach(function(s){
       tr.append(
-        "<td class='center'>" + user + "<br><img src='"+ user +"'>"+ user"</td>"
+        "<td class='center'>" + user + "<br><img src='"+ user +"'>" + user + "</td>"
       )
+      })
     })
 </script>
 </body>
