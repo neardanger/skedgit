@@ -11,10 +11,10 @@ module.exports = {
       if(err) console.log(err)
       console.log(user)
       res.render('profile', {user:{
-        id: user.facebook.id,
-        token: user.facebook.token,
-        name: user.facebook.name,
-        email: user.facebook.email
+        id: user.facebook,
+        token: user.facebook,
+        name: user.facebook,
+        email: user.facebook
       }})
     })
   },
