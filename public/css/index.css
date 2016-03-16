@@ -31,14 +31,19 @@ video#bgvid {
   height: 60%*/
 }
 
-#stage3-content {
-  margin-top: 15px;
+#stage2-content {
+  margin-top: 75px;
+}
+
+#categories-list .btn{
+  min-width: 175px;
 }
 
 .content {
   /*border-radius: 2px;*/
   background: rgba(255,255,255,0.8);
-  margin-top: 75px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   padding: 15px;
   /*box-shadow: 1px 1px 3px #EEE;*/
 }
@@ -49,4 +54,8 @@ a.btn {
 
 .time-slider{
   margin: 20px 0 13px 0;
+}
+
+img {
+  border-radius: 25%;
 }

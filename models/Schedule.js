@@ -7,7 +7,11 @@ var businessSchema = new mongoose.Schema({
   rating_img_url_small: String,
   snippet_text: String,
   display_address: String,
-  category: String
+  category: String,
+  times: {
+    start: String,
+    end: String
+  }
 })
 
 var scheduleSchema = new mongoose.Schema({

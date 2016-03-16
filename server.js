@@ -27,15 +27,14 @@ mongoose.connect('mongodb://neardanger:magadan312@ds015289.mlab.com:15289/skedgi
 app.use(logger('dev'))
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended:true}))
-// app.use(session({
-//   secret: "Steven",
-//   cookie: {_expires: 8000000}
-// }))
-app.use(ejsLayouts)
-app.use(express.static(path.join(__dirname, '/public')))
 app.set('view engine', 'ejs')
-app.use(ejsLayouts)
+app.use(flash());
+app.use(express.static(path.join(__dirname, '/public')))
+//app.use(ejsLayouts)
 app.use(bodyParser.json())
+app.use(session({ secret: 'awesomepossum' }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static('/public'))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -67,6 +66,9 @@ app.use(flash())
 //routes
 app.get('/', function(req,res){
   res.sendFile(__dirname, '/index.html')
+})
+app.get('/undefined', function(req,res){
+  res.json({})
 })
 
 app.use('/users', userRoutes)
