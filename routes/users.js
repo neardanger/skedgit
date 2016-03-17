@@ -13,13 +13,14 @@ var
       })
 
   userRouter.post('/profile', isLoggedIn, function(req, res){
-    var newSchedule = Schedule.new(req.body)
-    newSchedule.user = req.user
-    newSchedule.save(function(err, schedule){
-    if (err) console.log(err)
-      if(err) throw err
-      res.json(schedule)
-    })
+    // var newSchedule = Schedule.new(req.body)
+    // newSchedule.user = req.user
+    // newSchedule.save(function(err, schedule){
+    // if (err) console.log(err)
+    //   if(err) throw err
+    //   res.json(schedule)
+    // })
+    res.json(req.user)
   })
 
 // user Profile
