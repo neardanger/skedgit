@@ -17,10 +17,10 @@ var
     console.log("req.user");
     console.log(req.user)
     User.findOne({_id: req.user._id}, function(err, user){
-      newSchedule.user = user._id
-      newSchedule.save(function(err){
+      newSchedule.user = user
+      newSchedule.save(function(err, schedule){
         if (err) console.log(err)
-        user.schedules.push(newSchedule)
+        user.schedules.push(schedule)
         user.save(function(err, user){
           res.render('profile.ejs', {
             user: user
