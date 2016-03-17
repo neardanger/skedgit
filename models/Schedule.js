@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 
+
 var businessSchema = new mongoose.Schema({
   id: String,
   name: String,
@@ -15,8 +16,11 @@ var businessSchema = new mongoose.Schema({
 })
 
 var scheduleSchema = new mongoose.Schema({
+
+  user:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   name: {type: String, required: true},
   businesses: [businessSchema]
+
 })
 
 var Schedule = mongoose.model('Schedule', scheduleSchema)

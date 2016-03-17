@@ -30,7 +30,7 @@ faceBookLogout: function(req,res){
 
   },
 
-  checkLogin: function loggedIn(req,res,next){
+checkLogin: function loggedIn(req,res,next){
     if (req.isAuthenticated())
     return next()
 
