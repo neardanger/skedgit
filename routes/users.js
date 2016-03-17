@@ -14,11 +14,13 @@ var
 
   userRouter.post('/profile', isLoggedIn, function(req, res){
     var newSchedule = Schedule.new(req.body)
-    newSchedule.user = req.user
+    newSchedule.user = req.user._id
     newSchedule.save(function(err, schedule){
       if (err) console.log(err)
       if(err) throw err
-      res.render('profile.ejs')
+      res.render('profile.ejs', {
+        user: req.user
+      })
     })
   })
 
