@@ -37,6 +37,7 @@
                 <button id="submit-location" class="btn waves-effect waves-light" style="padding: 0 10 0 10;" name="action">Submit</button>
                 <i class="material-icons"></i>
                 <h6><a href="/users/auth/facebook" id="facebookbtn">Log In with Facebook</a></h6>
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
               </div>
             <!-- </form> -->
           </div>
@@ -44,6 +45,16 @@
       </div>
     </div>
   </div>
+  <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
+    </div>
+
 
 <!-- ////////////////////////////////////////////// stage 2 //////////////////////////////////////////////////////////////// -->
 
@@ -168,7 +179,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script src='/javascript/nouislider.js'></script>
 <script src="./javascript/index.js"></script>
+<script>
+$(document).ready(function(){
+// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+$('.modal-trigger').leanModal();
+})
+</script>
 <script type="text/javascript">
+
 
 </script>
 </body>
