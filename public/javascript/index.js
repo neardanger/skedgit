@@ -216,13 +216,13 @@ $('#stage2-submit').click(function(){
                     address: b.location.display_address[0],
                     phone: b.number,
                     rating: b.rating_img_url_small,
-
+                    url: b.url
                   }
         })
         // $('.materialboxed').materialbox();
         // console.log("search append done");
         console.log(lat, lng);
-        initMap(lat,lng, businessMarkers)
+        initMap(lat,lng, businessMarkers, 1)
 
         $('#loady').remove()
       })
@@ -258,10 +258,11 @@ $('#stage2-submit').click(function(){
     })
 
 // build google map w/google code ///////////////////////////////////////////////google maps
-    function initMap(lat,lng, businessMarkers) {
+    function initMap(lat,lng, businessMarkers, num) {
       var lat = lat || 0
       var lng = lng || 0
       var businessMarkers = businessMarkers || []
+      var num = num || 0
       var directionsService = new google.maps.DirectionsService;
       var directionsDisplay = new google.maps.DirectionsRenderer;
       var map = new google.maps.Map(document.getElementById('map'), {
@@ -280,12 +281,12 @@ $('#stage2-submit').click(function(){
         var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">' + m.name + '</h1>'+
-      '<div id="bodyContent"><p>' + m.address + '<br><img src=""' + m.rating +'"/>'+ m.phone
-      +
-      '</div>'+
-      '</div>'
-
+      '<h5 id="firstHeading" class="firstHeading">' + m.name + '</h5>'+
+      '<div id="bodyContent"><p>' + m.address
+      + '<br><img src="'
+      + m.rating +'"><br><a target="_blank"href="'
+      + m.url + '">More info</a></p>' +
+      '</div>'+ '</div>'
         var icon = {
             url: m.icon, // url
             scaledSize: new google.maps.Size(25, 25), // scaled size
@@ -322,8 +323,8 @@ $('#stage2-submit').click(function(){
       }
 
       directionsService.route({
-        origin: document.getElementById('start').value,
-        destination: document.getElementById('end').value,
+        origin: choice[0].display_address,
+        destination: choice[choice.length].display_address,
         waypoints: waypts,
         optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.DRIVING
