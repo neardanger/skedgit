@@ -168,8 +168,8 @@ $('#stage2-submit').click(function(){
       $('#map').css({width:"500px"})
       // initMap()
     })
-    var lat = 0
-    var lng = 0
+    var lat
+    var lng
     function populateList(){
       // console.log("populateList called");
 
@@ -267,7 +267,7 @@ $('#stage2-submit').click(function(){
       var directionsService = new google.maps.DirectionsService;
       var directionsDisplay = new google.maps.DirectionsRenderer;
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
+        zoom: 12,
         center: {lat: lat,lng: lng}
       });
       directionsDisplay.setMap(map);
@@ -322,8 +322,9 @@ $('#stage2-submit').click(function(){
           stopover: true
         })
       })
+      console.log(lat, 'lat', lng, 'lng');
       directionsService.route({
-        origin: whereTo,
+        origin: choice[0].display_address,
         destination: choice[choice.length -1].display_address,
         waypoints: wpts,
         optimizeWaypoints: true,
