@@ -1,5 +1,5 @@
 var
-  User = require('../models/User.js')
+  User = require('../models/User.js'),
   passport = require('passport')
 
 module.exports = {
