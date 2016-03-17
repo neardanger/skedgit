@@ -16,9 +16,7 @@ module.exports = {
     })
   },
 
-facebookEmail: passport.authenticate('facebook',{
-     scope: ['email']
-   }),
+facebookEmail: passport.authenticate('facebook',{ scope: ['email']}),
 
 faceBookLogin:
    passport.authenticate('facebook',{
