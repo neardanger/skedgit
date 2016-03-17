@@ -181,6 +181,7 @@ $('#stage2-submit').click(function(){
         data: JSON.stringify(query[currentStep]),
         contentType: 'application/json'
       }).done(function(result){
+        var businessMarkers = []
         lat = result.region.center.latitude
         lng = result.region.center.longitude
         console.log("result",result);
@@ -207,12 +208,21 @@ $('#stage2-submit').click(function(){
                       '<td><a class="btn add-button" data-id="' + i + '">Add</a></td>' +
                     "</tr>"
                   )
+                  businessMarkers[i] = {
+                    name: b.name,
+                    lat: b.location.coordinate.latitude,
+                    lng: b.location.coordinate.longitude,
+                    icon: b.image_url,
+                    address: b.location.display_address[0],
+                    phone: b.number,
+                    rating: b.rating_img_url_small,
 
+                  }
         })
         // $('.materialboxed').materialbox();
         // console.log("search append done");
         console.log(lat, lng);
-        initMap(lat,lng)
+        initMap(lat,lng, businessMarkers)
 
         $('#loady').remove()
       })
@@ -248,11 +258,14 @@ $('#stage2-submit').click(function(){
     })
 
 // build google map w/google code ///////////////////////////////////////////////google maps
-    function initMap(lat = 0,lng = 0) {
+    function initMap(lat,lng, businessMarkers) {
+      var lat = lat || 0
+      var lng = lng || 0
+      var businessMarkers = businessMarkers || []
       var directionsService = new google.maps.DirectionsService;
       var directionsDisplay = new google.maps.DirectionsRenderer;
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
+        zoom: 12,
         center: {lat: lat,lng: lng}
       });
       directionsDisplay.setMap(map);
@@ -260,6 +273,39 @@ $('#stage2-submit').click(function(){
 
       google.maps.event.addListenerOnce(map, 'idle', function() {
         google.maps.event.trigger(map, 'resize');
+      })
+
+
+      businessMarkers.forEach(function(m){
+        var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">' + m.name + '</h1>'+
+      '<div id="bodyContent"><p>' + m.address + '<br><img src=""' + m.rating +'"/>'+ m.phone
+      +
+      '</div>'+
+      '</div>'
+
+        var icon = {
+            url: m.icon, // url
+            scaledSize: new google.maps.Size(25, 25), // scaled size
+            origin: new google.maps.Point(0,0), // origin
+            anchor: new google.maps.Point(0, 0) // anchor
+        };
+      var marker = new google.maps.Marker({
+        position: {lat: m.lat, lng: m.lng},
+        map: map,
+        icon: icon,
+        animation: google.maps.Animation.DROP,
+        title: m.name
+      })
+      google.maps.event.addListener(marker , 'click', function(){
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString,
+            position: {lat: m.lat, lng: m.lng},
+          });
+          infowindow.open(map);
+          });
       })
     }
 
