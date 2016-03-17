@@ -9,10 +9,22 @@ module.exports = {
     })
   },
   post: function(req,res){
+    console.log(req.user )
     Schedule.create(req.body, function(err, schedule){
+    if (err) console.log(err)
       if(err) throw err
       res.json(schedule)
     })
+
+    //goal!!!
+
+    // var newSchedule = Schedule.new(req.body)
+    // newSchedule.user = req.user
+    // newSchedule.save(function(err, schedule){
+    // if (err) console.log(err)
+    //   if(err) throw err
+    //   res.json(schedule)
+    // })
   },
   update: function(req,res){
     Schedule.findOneAndUpdate({_id: req.params.id},req.body, function(err, schedule){
