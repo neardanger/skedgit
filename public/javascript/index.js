@@ -134,7 +134,7 @@ $('#stage2-submit').click(function(){
   slideBetween('#stage2','#stage3')
 })
 
-  // stage 3 //////////////////////////////////////////////////////////
+  // stage 3 ///////////////////////////////////////////////////////////////
   var search = $('#searchList')
   var $row = $('row')
 
@@ -222,7 +222,7 @@ $('#stage2-submit').click(function(){
         // $('.materialboxed').materialbox();
         // console.log("search append done");
         console.log(lat, lng);
-        initMap(lat,lng, businessMarkers, 1)
+        initMap(lat,lng, businessMarkers)
 
         $('#loady').remove()
       })
@@ -258,7 +258,7 @@ $('#stage2-submit').click(function(){
     })
 
 // build google map w/google code ///////////////////////////////////////////////google maps
-    function initMap(lat,lng, businessMarkers, num) {
+    function initMap(lat,lng, businessMarkers) {
       var lat = lat || 0
       var lng = lng || 0
       var businessMarkers = businessMarkers || []
@@ -276,7 +276,7 @@ $('#stage2-submit').click(function(){
         google.maps.event.trigger(map, 'resize');
       })
 
-
+      if(businessMarkers){
       businessMarkers.forEach(function(m){
         var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
@@ -309,9 +309,9 @@ $('#stage2-submit').click(function(){
           });
       })
     }
+    }
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-      var waypts = [];
       var checkboxArray = document.getElementById('waypoints');
       for (var i = 0; i < checkboxArray.length; i++) {
         if (checkboxArray.options[i].selected) {
@@ -321,11 +321,14 @@ $('#stage2-submit').click(function(){
           });
         }
       }
-
+      var wpts = []
+      choice.splice(0,choice.length - 1).forEach(function(c,i){
+        wpts[i] = c.display_address
+      })
       directionsService.route({
-        origin: choice[0].display_address,
+        origin: {lat: lat, lng: lng},
         destination: choice[choice.length].display_address,
-        waypoints: waypts,
+        waypoints: wpts,
         optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.DRIVING
       }, function(response, status) {
@@ -349,6 +352,7 @@ $('#stage2-submit').click(function(){
       });
     }
   // stage 4  //////////////////////////////////////////////////////////////////////////////////////////////////
+
   var prop = $('#searchProp')
   var tr = $('#trList')
   var save = $('#saveSchedule')
@@ -364,6 +368,7 @@ function fillPage() {
       "<td class='center'>" + b.name + "<br><img class='center' src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>"
     )
   })
+
   }
 
   save.on('click', function(){
