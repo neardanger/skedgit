@@ -14,17 +14,23 @@ var
 
   userRouter.post('/profile', isLoggedIn, function(req, res){
     var newSchedule = Schedule.new(req.body)
-    newSchedule.user = req.user._id
-    newSchedule.save(function(err){
-      if (err) console.log(err)
-      user.schedules.push(newSchedule)
-      user.save(function(err, user){
-        res.render('profile.ejs', {
-          user: req.user
+    User.findOne({_id: req.user._id}, function(err, user){
+      newSchedule.user = user._id
+      newSchedule.save(function(err){
+        if (err) console.log(err)
+        user.schedules.push(newSchedule)
+        user.save(function(err, user){
+          res.render('profile.ejs', {
+            user: user
+          })
         })
       })
     })
+
+
   })
+
+  // userRouter.post('/:id/schedules', function(req,))
 
 // user Profile
   userRouter.get('/:id', userCtrl.profile)
