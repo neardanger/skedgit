@@ -134,7 +134,7 @@ $('#stage2-submit').click(function(){
   slideBetween('#stage2','#stage3')
 })
 
-  // stage 3 //////////////////////////////////////////////////////////
+  // stage 3 ///////////////////////////////////////////////////////////////
   var search = $('#searchList')
   var $row = $('row')
 
@@ -168,11 +168,11 @@ $('#stage2-submit').click(function(){
       $('#map').css({width:"500px"})
       // initMap()
     })
-
+    var lat
+    var lng
     function populateList(){
       // console.log("populateList called");
-      var lat = 0
-      var lng = 0
+
       $('#heading').after('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
       console.log("query[currentStep]",query[currentStep]);
       $.ajax({
@@ -195,7 +195,7 @@ $('#stage2-submit').click(function(){
             image_url: b.image_url,
             rating_img_url_small: b.rating_img_url_small,
             snippet_text: b.snippet_text,
-            display_address: b.location.display_address[0],
+            display_address: b.location.display_address[0] + " " + b.location.display_address[2],
             category: query[currentStep].query.term
           }
           // console.log("business foreach done");
@@ -213,10 +213,10 @@ $('#stage2-submit').click(function(){
                     lat: b.location.coordinate.latitude,
                     lng: b.location.coordinate.longitude,
                     icon: b.image_url,
-                    address: b.location.display_address[0],
+                    address: b.location.display_address[0] + " " + b.location.display_address[2],
                     phone: b.number,
                     rating: b.rating_img_url_small,
-
+                    url: b.url
                   }
         })
         // $('.materialboxed').materialbox();
@@ -253,15 +253,17 @@ $('#stage2-submit').click(function(){
       }
       if (currentStep == (query.length)) {
         slideBetween('#stage3', '#stage4')
+        $('#map').remove()
         fillPage()
       }
     })
 
 // build google map w/google code ///////////////////////////////////////////////google maps
-    function initMap(lat,lng, businessMarkers) {
+    function initMap(lat,lng, businessMarkers, directions) {
       var lat = lat || 0
       var lng = lng || 0
       var businessMarkers = businessMarkers || []
+      var num = num || 0
       var directionsService = new google.maps.DirectionsService;
       var directionsDisplay = new google.maps.DirectionsRenderer;
       var map = new google.maps.Map(document.getElementById('map'), {
@@ -275,56 +277,56 @@ $('#stage2-submit').click(function(){
         google.maps.event.trigger(map, 'resize');
       })
 
+      if(businessMarkers){
+        businessMarkers.forEach(function(m){
+          var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h5 id="firstHeading" class="firstHeading">' + m.name + '</h5>'+
+        '<div id="bodyContent"><p>' + m.address
+        + '<br><img src="'
+        + m.rating +'"><br><a target="_blank"href="'
+        + m.url + '">More info</a></p>' +
+        '</div>'+ '</div>'
+          var icon = {
+              url: m.icon, // url
+              scaledSize: new google.maps.Size(25, 25), // scaled size
+              origin: new google.maps.Point(0,0), // origin
+              anchor: new google.maps.Point(0, 0) // anchor
+          };
+        var marker = new google.maps.Marker({
+          position: {lat: m.lat, lng: m.lng},
+          map: map,
+          icon: icon,
+          animation: google.maps.Animation.DROP,
+          title: m.name
+        })
+        google.maps.event.addListener(marker , 'click', function(){
+            var infowindow = new google.maps.InfoWindow({
+              content: contentString,
+              position: {lat: m.lat, lng: m.lng},
+            });
+            infowindow.open(map);
+            });
+        })
+      }
 
-      businessMarkers.forEach(function(m){
-        var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">' + m.name + '</h1>'+
-      '<div id="bodyContent"><p>' + m.address + '<br><img src=""' + m.rating +'"/>'+ m.phone
-      +
-      '</div>'+
-      '</div>'
-
-        var icon = {
-            url: m.icon, // url
-            scaledSize: new google.maps.Size(25, 25), // scaled size
-            origin: new google.maps.Point(0,0), // origin
-            anchor: new google.maps.Point(0, 0) // anchor
-        };
-      var marker = new google.maps.Marker({
-        position: {lat: m.lat, lng: m.lng},
-        map: map,
-        icon: icon,
-        animation: google.maps.Animation.DROP,
-        title: m.name
-      })
-      google.maps.event.addListener(marker , 'click', function(){
-          var infowindow = new google.maps.InfoWindow({
-            content: contentString,
-            position: {lat: m.lat, lng: m.lng},
-          });
-          infowindow.open(map);
-          });
-      })
+      if (directions) calculateAndDisplayRoute(directionsService, directionsDisplay)
     }
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-      var waypts = [];
-      var checkboxArray = document.getElementById('waypoints');
-      for (var i = 0; i < checkboxArray.length; i++) {
-        if (checkboxArray.options[i].selected) {
-          waypts.push({
-            location: checkboxArray[i].value,
-            stopover: true
-          });
-        }
-      }
-
+      var wpts = []
+      choice.splice(0,choice.length - 1).forEach(function(c){
+        wpts.push({
+          location: c.display_address,
+          stopover: true
+        })
+      })
+      console.log(lat, 'lat', lng, 'lng');
       directionsService.route({
-        origin: document.getElementById('start').value,
-        destination: document.getElementById('end').value,
-        waypoints: waypts,
+        origin: choice[0].display_address,
+        destination: choice[choice.length -1].display_address,
+        waypoints: wpts,
         optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.DRIVING
       }, function(response, status) {
@@ -348,6 +350,7 @@ $('#stage2-submit').click(function(){
       });
     }
   // stage 4  //////////////////////////////////////////////////////////////////////////////////////////////////
+
   var prop = $('#searchProp')
   var tr = $('#trList')
   var save = $('#saveSchedule')
@@ -363,6 +366,10 @@ function fillPage() {
       "<td class='center'>" + b.name + "<br><img class='center' src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>"
     )
   })
+
+  $('#directions-panel').before('<div id="map" class="center"></div>')
+  initMap(lat,lng,null,true)
+
   }
 
   save.on('click', function(){
@@ -381,7 +388,7 @@ function fillPage() {
 
       $.ajax({
         method: "post",
-        url: "/schedules",
+        url: "/users/profile",
         data: JSON.stringify(newSchedule),
         contentType: 'application/json'
       }).done(function(){
