@@ -388,7 +388,7 @@ function fillPage() {
 
       $.ajax({
         method: "post",
-        url: "/schedules",
+        url: "/users/profile",
         data: JSON.stringify(newSchedule),
         contentType: 'application/json'
       }).done(function(){
