@@ -7,23 +7,23 @@ module.exports = {
       if(err) throw err
       res.json(schedule)
     })
-
   },
   post: function(req,res){
     console.log(req.user )
-    var newSchedule = Schedule.new(req.body)
-    newSchedule.user = req.user
-    newSchedule.save(function(err, schedule){
+    Schedule.create(req.body, function(err, schedule){
     if (err) console.log(err)
       if(err) throw err
       res.json(schedule)
     })
+//goal
+    // var newSchedule = Schedule.new(req.body)
+    // newSchedule.user = req.user
+    // newSchedule.save(function(err, schedule){
+    // if (err) console.log(err)
+    //   if(err) throw err
+    //   res.json(schedule)
+    // })
   },
-
-
-
-    //goal!!!
-
   update: function(req,res){
     Schedule.findOneAndUpdate({_id: req.params.id},req.body, function(err, schedule){
       if(err) throw err
