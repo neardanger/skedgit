@@ -1,3 +1,4 @@
+// transitional code
 function slideOutLeft(el){
   $(el).animate({marginLeft: "-1000px", opacity: "0"}, 250, function(){
     $(el).hide()
@@ -21,6 +22,7 @@ function slideBetween(el, next){
 }
 
 
+
 // stage 1  //////////////////////////////////////////////////////////
 v = document.getElementsByTagName("video")[0]
 
@@ -38,12 +40,6 @@ v.addEventListener("timeupdate", function() {
 
 var whereTo
 
-<<<<<<< HEAD
-$('img').addClass('materialboxed')
-=======
-// $('img').addClass('materialboxed')
-
->>>>>>> 48a7b9bef8b3c375461e66d1c604426c998c6ee3
 // switch between stages
 $('#submit-location').click(function(evt){
   slideBetween('#stage1','#stage2')
@@ -95,12 +91,8 @@ function addSlider(i){
   })
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 48a7b9bef8b3c375461e66d1c604426c998c6ee3
 var query = []
-
+// addes schedule item
 function addScheduleItem(){
   var scheduleQuery = $('#schedule-query').val()
 
@@ -172,8 +164,15 @@ $('#stage2-submit').click(function(){
     // var headings = ["Restaurants","Bars","Desserts"]
     var businesses = []
 
+    $('#resize').click(function(){
+      $('#map').css({width:"500px"})
+      // initMap()
+    })
+
     function populateList(){
       // console.log("populateList called");
+      var lat = 0
+      var lng = 0
       $('#heading').after('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
       console.log("query[currentStep]",query[currentStep]);
       $.ajax({
@@ -182,6 +181,8 @@ $('#stage2-submit').click(function(){
         data: JSON.stringify(query[currentStep]),
         contentType: 'application/json'
       }).done(function(result){
+        lat = result.region.center.latitude
+        lng = result.region.center.longitude
         console.log("result",result);
         // console.log("$ ajax done called");
         search.html('')
@@ -200,7 +201,7 @@ $('#stage2-submit').click(function(){
           search.append(
                     '<tr style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">' +
                       "<td class='center'>" + b.name + "<br><img class='materialboxed' src='"+ b.image_url +"'></td>" +
-                      "<td><img src='" + b.rating_img_url_small + "'></td>" +
+                      "<td><img class='round-img' src='" + b.rating_img_url_small + "'></td>" +
                       "<td style='width: 350px'>" + b.snippet_text +'</td>' +
                       '<td>' + b.location.display_address[0] +'</td>' +
                       '<td><a class="btn add-button" data-id="' + i + '">Add</a></td>' +
@@ -210,6 +211,8 @@ $('#stage2-submit').click(function(){
         })
         // $('.materialboxed').materialbox();
         // console.log("search append done");
+        console.log(lat, lng);
+        initMap(lat,lng)
 
         $('#loady').remove()
       })
@@ -244,19 +247,20 @@ $('#stage2-submit').click(function(){
       }
     })
 
-
-    function initMap() {
+// build google map w/google code ///////////////////////////////////////////////google maps
+    function initMap(lat = 0,lng = 0) {
       var directionsService = new google.maps.DirectionsService;
       var directionsDisplay = new google.maps.DirectionsRenderer;
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 6,
-        center: {lat: 41.85, lng: -87.65}
+        zoom: 10,
+        center: {lat: lat,lng: lng}
       });
       directionsDisplay.setMap(map);
 
-      document.getElementById('submit').addEventListener('click', function() {
-        calculateAndDisplayRoute(directionsService, directionsDisplay);
-      });
+
+      google.maps.event.addListenerOnce(map, 'idle', function() {
+        google.maps.event.trigger(map, 'resize');
+      })
     }
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
@@ -297,11 +301,11 @@ $('#stage2-submit').click(function(){
         }
       });
     }
-  // stage 4  //////////////////////////////////////////////////////////
+  // stage 4  //////////////////////////////////////////////////////////////////////////////////////////////////
   var prop = $('#searchProp')
   var tr = $('#trList')
   var save = $('#saveSchedule')
-
+//generate choices they picked
   // var choice = [{ id:"tar-and-roses-santa-monica",rating_img_url_small: "",category: "Restaurant", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/OrWLCrnxBfhEjeyDCPC19w/ms.jpg", name:"Tar & Roses" },{id:"the-misfit-restaurant-bar-santa-monica", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/Dvb6PZA56JLYRA-SNl5Ivw/ms.jpg", name: "The Misfit Restaurant + Bar", category: "Bar"},{id:'roccos-cheesecake-santa-monica',image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/BVZXOxC_Elyda1BU65IMig/ms.jpg",category: "Desert",name: "Rocco's Cheesecake"}]
 function fillPage() {
   console.log("choice",choice);
