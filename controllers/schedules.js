@@ -12,6 +12,7 @@ module.exports = {
     // console.log(req.user )
     Schedule.create(req.body, function(err, schedule){
     if (err) console.log(err)
+    console.log(schedule);
       if(err) throw err
       res.json(schedule)
     })

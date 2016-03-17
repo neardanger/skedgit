@@ -26,8 +26,6 @@ var
         })
       })
     })
-
-
   })
 
   // userRouter.post('/:id/schedules', function(req,))
