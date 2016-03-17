@@ -3,11 +3,12 @@ var
   userRouter = express.Router(),
   passport = require('passport'),
   userCtrl = require('../controllers/users.js'),
-  User = require('../models/User.js')
+  User = require('../models/User.js'),
   Schedule = require("../models/Schedule.js")
 
 
   userRouter.get('/profile', isLoggedIn, function(req, res) {
+    console.log("RENDERED PROFILE")
           res.render('profile.ejs', {
               user : req.user // get the user out of session and pass to template
           });
