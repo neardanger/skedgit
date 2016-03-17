@@ -13,7 +13,7 @@ var
       })
 
   userRouter.post('/profile', isLoggedIn, function(req, res){
-    var newSchedule = Schedule.new(req.body)
+    var newSchedule = new Schedule(req.body)
     console.log("req.user");
     console.log(req.user)
     User.findOne({_id: req.user._id}, function(err, user){
