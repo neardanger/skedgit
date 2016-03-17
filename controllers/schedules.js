@@ -15,9 +15,7 @@ module.exports = {
       if(err) throw err
       res.json(schedule)
     })
-
-    //goal!!!
-
+//goal
     // var newSchedule = Schedule.new(req.body)
     // newSchedule.user = req.user
     // newSchedule.save(function(err, schedule){
