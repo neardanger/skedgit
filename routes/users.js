@@ -3,6 +3,7 @@ var
   userRouter = express.Router(),
   passport = require('passport'),
   userCtrl = require('../controllers/users.js'),
+  User = require('../models/User.js')
   Schedule = require("../models/Schedule.js")
 
 
