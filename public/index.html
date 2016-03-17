@@ -17,6 +17,7 @@
 <body>
   <!--background video  -->
   <video autoplay loop muted id="bgvid" src="./videos/bgvideo.mp4#t13,138" ></video>
+
 <div id="stage1">
   <div>
       <div class="container z-depth-2" id="whitebg">
@@ -62,7 +63,7 @@
 
         <input type="text" id="schedule-query" class="col s8 offset-s2 center">
 
-        <a class="btn" id="add-schedule-item" href="#modal1">Add a Schedule Item</a>
+        <a class="btn" id="add-schedule-item">Add a Schedule Item</a>
 
         <!-- Modal Trigger -->
 <!-- <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a> -->
@@ -95,6 +96,8 @@
 <div class="container">
     <div class="content center col m8 offset-m2 z-depth-2">
       <h5 class="header col s12 light">Suggestions</h5>
+
+        <div id="map" class="center"></div>
 
       <div class="progress">
           <div class="determinate" style="width: 30%"></div>
@@ -169,16 +172,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script src='/javascript/nouislider.js'></script>
 <script src="./javascript/index.js"></script>
-<script>
-$(document).ready(function(){
-// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-$('.modal-trigger').leanModal();
-})
-</script>
-<script type="text/javascript">
-
-
-</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByOfSWgibxyAYIpZnY5pCVedWHhBxnY7w&callback=initMap"></script>
 </body>
 
 
