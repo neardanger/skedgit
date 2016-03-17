@@ -24,9 +24,7 @@ var
         if (err) console.log(err)
         user.schedules.push(schedule)
         user.save(function(err, user){
-          res.render('profile.ejs', {
-            user: user
-          })
+          res.json({success:true, schedule})
         })
       })
     })
