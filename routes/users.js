@@ -20,7 +20,7 @@ var
     //   if(err) throw err
     //   res.json(schedule)
     // })
-    res.json(req.user)
+    res.render(req.user)
   })
 
 // user Profile
