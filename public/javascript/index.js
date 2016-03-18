@@ -232,7 +232,7 @@ $('#stage2-submit').click(function(){
     $('body').on('click','.add-button', function(evt){
       if (currentStep < (query.length)){
         $('html, body').animate({scrollTop:0}, 300)
-        choice[currentStep] = businesses[$(evt.target).data("id")]
+        choice.push(businesses[$(evt.target).data("id")])
         choice[currentStep].times = times[currentStep]
         console.log(choice[currentStep])
         if(currentStep == 0) {
