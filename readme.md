@@ -1,4 +1,8 @@
-# Skedgit
+# Skedj
+
+https://skedj.herokuapp.com/
+
+https://trello.com/b/afv84TWz/wdi-p3
 
 ### Description
 
