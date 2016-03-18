@@ -23,20 +23,19 @@
       <div class="row" style="margin: 0 auto;">
           <h5 class="card-panel teal lighten-2" id="heading" style="color: white;" href="#"><%=user.facebook.name%> Schedule's</h5><br>
         <div class="responsive-table ">
-      <table>
-        <tbody id="searchList">
+
 
             <% user.schedules.forEach(function(s){ %>
-            <!-- <th><%= s.name %></th> -->
-              <tr>
-                <% s.businesses.forEach(function(b){ %>
-                   <td class='center'><%= b.name %><br><img class='center' src="<%= b.image_url %>"><br><%= b.times.start %> to <%= b.times.end %></td></tr>
-                <% }) %>
-              </tr>
+              <table>
+                <tbody>
+                    <tr>
+                      <% s.businesses.forEach(function(b){ %>
+                         <td class='center'><%= b.name %><br><img class='center' src="<%= b.image_url %>"><br><%= b.times.start %> to <%= b.times.end %></td></tr>
+                      <% }) %>
+                    </tr>
+                  </tbody>
+                </table>
             <% }) %>
-          </tr>
-        </tbody>
-      </table>
         </div>
       </div> <!-- /row -->
     </div> <!-- /content center col -->
