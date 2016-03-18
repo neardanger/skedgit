@@ -29,7 +29,7 @@
             <% user.schedules.forEach(function(s){ %>
             <th><%= s.name %></th>
               <% s.businesses.forEach(function(b){ %>
-                 <td class='center'><%= b.name %><br><img class='center' src="<%= b.image_url %>"><br><%= b.times.start %> to <%= b.times.end %></td>
+                 <tr><td class='center'><%= b.name %><br><img class='center' src="<%= b.image_url %>"><br><%= b.times.start %> to <%= b.times.end %></td></tr>
               <% }) %>
             <% }) %>
           </tr>
