@@ -390,7 +390,7 @@ function fillPage() {
 
       newScheduleItem.forEach(function(i){
         newSchedule.businesses.push(i)
-        console.log(c,'i');
+        console.log(i,'i');
       })
 
       console.log("newSchedule",newSchedule);
