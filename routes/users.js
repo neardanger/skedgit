@@ -19,7 +19,7 @@ var
     // res.render('profile.ejs', {
     //               user : req.user // get the user out of session and pass to template
     //           })
-    //       })
+          })
 
   userRouter.post('/profile', isLoggedIn, function(req, res){
     var newSchedule = new Schedule(req.body)
