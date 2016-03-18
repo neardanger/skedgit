@@ -143,6 +143,8 @@ $('#stage2-submit').click(function(){
 
     var currentStep = 0
 
+
+//This code isn't needed
     // var query = [{
     //   query: {
     //     location: "",
