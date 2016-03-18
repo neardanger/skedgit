@@ -17,31 +17,21 @@
 
 <div class="container">
     <div class="content center col m8 offset-m2 z-depth-2">
-      <h5 class="header col s12 light">Schedules</h5>
-
-      <% if (user.facebook.name){%>
-
-            <p>
-                <strong>Name</strong>: <%= user.facebook.name %><br>
-                <strong>id</strong>: <%= user.facebook.id %><br>
-                <strong>email</strong>: <%= user.facebook.email %><br>
-                <strong>token</strong>: <%= user.facebook.token %><br>
-            </p>
-            <% } %>
 
 
 
       <div class="row" style="margin: 0 auto;">
-          <h5 class="card-panel teal lighten-2" id="heading" style="color: white;" href="#">Location</h5><br>
+          <h5 class="card-panel teal lighten-2" id="heading" style="color: white;" href="#"><%=user.facebook.name%> Schedule's</h5><br>
         <div class="responsive-table ">
       <table>
-        <thead >
-          <tr class="card-panel teal lighten-2"id="searchProp" >
-
-          </tr>
-        </thead>
         <tbody id="searchList">
           <tr id="trList"  style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">
+            <% user.schedules.forEach(function(s){ %>
+              <%= '<th>'+ name +'</th>'%>
+              <% s.businesses.forEach(function(b){ %>
+                <%= "<td class='center'>" + b.name + "<br><img class='center' src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>" %>
+              <% }) %>
+            <% }) %>
           </tr>
         </tbody>
       </table>

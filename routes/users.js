@@ -9,9 +9,11 @@ var
 
   userRouter.get('/profile', isLoggedIn, function(req, res) {
     console.log("RENDERED PROFILE")
+    req.user.populate('schedules').exec(function(err, user){
           res.render('profile.ejs', {
-              user : req.user // get the user out of session and pass to template
+              user : user // get the user out of session and pass to template
           });
+        })
       })
 
   userRouter.post('/profile', isLoggedIn, function(req, res){
