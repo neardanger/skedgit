@@ -316,7 +316,8 @@ $('#stage2-submit').click(function(){
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
       var wpts = []
-      choice.splice(0,choice.length - 1).forEach(function(c){
+      var choice2 = choice.splice(0,choice.length - 1)
+      choice2.forEach(function(c){
         wpts.push({
           location: c.display_address,
           stopover: true
@@ -324,8 +325,8 @@ $('#stage2-submit').click(function(){
       })
       // console.log(lat, 'lat', lng, 'lng');
       directionsService.route({
-        origin: choice[0].display_address,
-        destination: choice[choice.length -1].display_address,
+        origin: choice2[0].display_address,
+        destination: choice2[choice2.length -1].display_address,
         waypoints: wpts,
         optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.DRIVING
