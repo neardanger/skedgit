@@ -22,9 +22,8 @@
 
       <div class="row" style="margin: 0 auto;">
           <h5 class="card-panel teal lighten-2" id="heading" style="color: white;" href="#"><%=user.facebook.name%> Schedule's</h5><br>
+          <a class="btn center waves-effect waves-light" href="/">Add a New Schedule</a>
         <div class="responsive-table ">
-
-
             <% user.schedules.forEach(function(s){ %>
               <h5 class="heading center light"><%= s.name %></h5>
               <table>
