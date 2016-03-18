@@ -27,7 +27,7 @@
         <tbody id="searchList">
           <tr id="trList"  style="height: 150px;border-top: 1px solid black;border-bottom: 1px solid black">
             <% user.schedules.forEach(function(s){ %>
-              <%= '<th>'+ name +'</th>'%>
+              <%= '<th>'+ s.name +'</th>'%>
               <% s.businesses.forEach(function(b){ %>
                 <%= "<td class='center'>" + b.name + "<br><img class='center' src='" + b.image_url + "'><br>" + b.times.start + " to " + b.times.end + "</td>" %>
               <% }) %>
