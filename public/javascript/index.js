@@ -396,7 +396,7 @@ function fillPage() {
         contentType: 'application/json'
       }).done(function(){
         Materialize.toast('Schedule saved!', 2000, 'rounded green')
-        window.location = "/users/profile"
+        // window.location = "/users/profile"
       })
     } else {
       Materialize.toast('Please name your schedule', 2000, 'rounded red')
