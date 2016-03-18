@@ -356,11 +356,14 @@ $('#stage2-submit').click(function(){
   var prop = $('#searchProp')
   var tr = $('#trList')
   var save = $('#saveSchedule')
+
+  var newScheduleItem = []
 //generate choices they picked
   // var choice = [{ id:"tar-and-roses-santa-monica",rating_img_url_small: "",category: "Restaurant", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/OrWLCrnxBfhEjeyDCPC19w/ms.jpg", name:"Tar & Roses" },{id:"the-misfit-restaurant-bar-santa-monica", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/Dvb6PZA56JLYRA-SNl5Ivw/ms.jpg", name: "The Misfit Restaurant + Bar", category: "Bar"},{id:'roccos-cheesecake-santa-monica',image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/BVZXOxC_Elyda1BU65IMig/ms.jpg",category: "Desert",name: "Rocco's Cheesecake"}]
 function fillPage() {
   console.log("fillPage choice",choice);
   choice.forEach(function(b){
+    newScheduleItem.push(b)
     prop.append(
       '<th class="center">'+ b.category + '</th>'
     )
@@ -385,9 +388,9 @@ function fillPage() {
 
       console.log(choice, "choice");
 
-      choice.forEach(function(c){
-        newSchedule.businesses.push(c)
-        console.log(c,'c');
+      newScheduleItem.forEach(function(i){
+        newSchedule.businesses.push(i)
+        console.log(c,'i');
       })
 
       console.log("newSchedule",newSchedule);
