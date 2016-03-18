@@ -381,11 +381,14 @@ function fillPage() {
         businesses: []
       }
 
-      console.log("newSchedule",newSchedule);
+      console.log(choice, "choice");
+
       choice.forEach(function(c){
         newSchedule.businesses.push(c)
+        console.log(c,'c');
       })
 
+      console.log("newSchedule",newSchedule);
       $.ajax({
         method: "post",
         url: "/users/profile",
