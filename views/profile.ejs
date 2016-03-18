@@ -29,11 +29,11 @@
               <table>
                 <tbody>
                   <% s.businesses.forEach(function(b){ %>
-                     <th>b.category</th>
+                     <th><%= b.category %></th>
                  <% }) %>
                     <tr>
                       <% s.businesses.forEach(function(b){ %>
-                         <td class='center'><%= b.name %><br><img class='center' src="<%= b.image_url %>"><br><%= b.times.start %> to <%= b.times.end %></td></tr>
+                         <td class='center'><%= b.name %><br><img class='center' src="<%= b.image_url %>"><%= b.times.start %> to <%= b.times.end %></td>
                       <% }) %>
                     </tr>
                   </tbody>
