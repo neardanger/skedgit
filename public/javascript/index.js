@@ -28,7 +28,7 @@ v = document.getElementsByTagName("video")[0]
 
 // run the video in the background and loops it
 v.addEventListener('play', function() {
-  console.log(this)
+  // console.log(this)
   v.currentTime = 13;
 }, false);
 v.addEventListener("timeupdate", function() {
@@ -48,7 +48,7 @@ $('#submit-location').click(function(evt){
   whereTo = whereTo.replace(/^\s+|\s+$/g, "");
   // query.forEach(function(userL){
   //   userL.query.location = whereTo
-  console.log(whereTo);
+  // console.log(whereTo);
 })
 //  stage 2  //////////////////////////////////////////////////////////
 var $content = $('<div class="row"></div>')
@@ -63,7 +63,7 @@ var scheduleItems = []
 // for the time bar
 function addSlider(i){
   sliders[i] = document.getElementById('time' + i)
-  console.log("sliders[i]",sliders[i]);
+  // console.log("sliders[i]",sliders[i]);
   var timeStart = 9 + (i * 2)
   var timeEnd = i<=25 ? timeStart + 2 : 27
     noUiSlider.create(sliders[i], {
@@ -98,7 +98,7 @@ function addScheduleItem(){
 
   if(scheduleQuery){
     var i = scheduleItems.length
-    console.log("i", i);
+    // console.log("i", i);
     query[i]={
       query: {
         term: scheduleQuery,
@@ -109,7 +109,7 @@ function addScheduleItem(){
     $categoriesList.append('<div>'+query[i].query.term+'</div><br>')
     var $slider = $('<div id="time'+i+'" class="time-slider"></div><br>')
     $categoriesList.append($slider)
-    console.log("$slider",$slider);
+    // console.log("$slider",$slider);
     addSlider(i)
   } else {
     Materialize.toast('Please enter a query', 2000, 'rounded red')
@@ -128,7 +128,7 @@ $('#stage2-submit').click(function(){
       end: values[1]
     }
   }
-  console.log(query);
+  // console.log(query);
   // console.log("times", times)
   populateList()
   slideBetween('#stage2','#stage3')
@@ -174,7 +174,7 @@ $('#stage2-submit').click(function(){
       // console.log("populateList called");
 
       $('#heading').after('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
-      console.log("query[currentStep]",query[currentStep]);
+      // console.log("query[currentStep]",query[currentStep]);
       $.ajax({
         method: "post",
         url: '/yelp/search',
@@ -184,7 +184,7 @@ $('#stage2-submit').click(function(){
         var businessMarkers = []
         lat = result.region.center.latitude
         lng = result.region.center.longitude
-        console.log("result",result);
+        // console.log("result",result);
         // console.log("$ ajax done called");
         search.html('')
         $('#heading').text(query[currentStep].query.term)
@@ -221,7 +221,7 @@ $('#stage2-submit').click(function(){
         })
         // $('.materialboxed').materialbox();
         // console.log("search append done");
-        console.log(lat, lng);
+        // console.log(lat, lng);
         initMap(lat,lng, businessMarkers)
 
         $('#loady').remove()
@@ -234,7 +234,7 @@ $('#stage2-submit').click(function(){
         $('html, body').animate({scrollTop:0}, 300)
         choice.push(businesses[$(evt.target).data("id")])
         choice[currentStep].times = times[currentStep]
-        console.log(choice[currentStep])
+        // console.log(choice[currentStep])
         if(currentStep == 0) {
           var width = "50%"
         }
@@ -247,7 +247,7 @@ $('#stage2-submit').click(function(){
         $('.determinate').css({width: width})
 
           currentStep++
-          console.log("currentStep", currentStep)
+          // console.log("currentStep", currentStep)
           // $('#step' + currentStep)
           populateList()
       }
@@ -322,7 +322,7 @@ $('#stage2-submit').click(function(){
           stopover: true
         })
       })
-      console.log(lat, 'lat', lng, 'lng');
+      // console.log(lat, 'lat', lng, 'lng');
       directionsService.route({
         origin: choice[0].display_address,
         destination: choice[choice.length -1].display_address,
@@ -357,7 +357,7 @@ $('#stage2-submit').click(function(){
 //generate choices they picked
   // var choice = [{ id:"tar-and-roses-santa-monica",rating_img_url_small: "",category: "Restaurant", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/OrWLCrnxBfhEjeyDCPC19w/ms.jpg", name:"Tar & Roses" },{id:"the-misfit-restaurant-bar-santa-monica", image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/Dvb6PZA56JLYRA-SNl5Ivw/ms.jpg", name: "The Misfit Restaurant + Bar", category: "Bar"},{id:'roccos-cheesecake-santa-monica',image_url: "https://s3-media4.fl.yelpcdn.com/bphoto/BVZXOxC_Elyda1BU65IMig/ms.jpg",category: "Desert",name: "Rocco's Cheesecake"}]
 function fillPage() {
-  console.log("choice",choice);
+  console.log("fillPage choice",choice);
   choice.forEach(function(b){
     prop.append(
       '<th class="center">'+ b.category + '</th>'
@@ -373,7 +373,7 @@ function fillPage() {
   }
 
   save.on('click', function(){
-    console.log('on clicked');
+    // console.log('on clicked');
 
     if ($('#schedule-name').val()) {
       var newSchedule = {
