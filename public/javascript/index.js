@@ -213,7 +213,7 @@ $('#stage2-submit').click(function(){
                     lat: b.location.coordinate.latitude,
                     lng: b.location.coordinate.longitude,
                     icon: b.image_url,
-                    address: b.location.display_address[0] + " " + b.location.display_address[2],
+                    address: b.location.display_address[0] + " " + b.location.display_address[1],
                     phone: b.number,
                     rating: b.rating_img_url_small,
                     url: b.url
