@@ -9,13 +9,16 @@ var
 
   userRouter.get('/profile', isLoggedIn, function(req, res) {
     console.log("RENDERED PROFILE")
-    User.findOne({_id: req.user._id})
-        .populate('schedules')
-        .exec(function(err, user){
-              res.render('profile.ejs', {
+    // User.findOne({_id: req.user._id})
+    //     .populate('schedules')
+    //     .exec(function(err, user){
+    //           res.render('profile.ejs', {
+    //               user : user // get the user out of session and pass to template
+    //           });
+    //         })
+    res.render('profile.ejs', {
                   user : user // get the user out of session and pass to template
-              });
-            })
+              })
           })
 
   userRouter.post('/profile', isLoggedIn, function(req, res){
