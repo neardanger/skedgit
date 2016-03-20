@@ -195,7 +195,7 @@ $('#stage2-submit').click(function(){
             image_url: b.image_url,
             rating_img_url_small: b.rating_img_url_small,
             snippet_text: b.snippet_text,
-            display_address: b.location.display_address[0] + " " + b.location.display_address[2],
+            display_address: b.location.display_address[0] + " " + b.location.display_address[1],
             category: query[currentStep].query.term
           }
           // console.log("business foreach done");
