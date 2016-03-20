@@ -3,9 +3,6 @@ var
   passport = require('passport')
 
 module.exports = {
-
-
-
   profile: function(req,res){
     User.findOne({_id: req.params.id}, function(err,user){
       if(err) console.log(err)
@@ -36,5 +33,4 @@ checkLogin: function loggedIn(req,res,next){
 
     res.redirect('/')
   }
-
 }
