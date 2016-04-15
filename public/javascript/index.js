@@ -45,6 +45,7 @@ $('#submit-location').click(function(evt){
   whereTo = $('#location_1').val()
   whereTo = whereTo.replace(/\s+/g, "+")
   whereTo = whereTo.replace(/^\s+|\s+$/g, "");
+  $('#s1-header').after('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
 
   $.ajax({
     method: "post",
@@ -52,6 +53,7 @@ $('#submit-location').click(function(evt){
     data: JSON.stringify({query: {location:whereTo}}),
     contentType: 'application/json'
   }).done(function(result){
+    $('#loady').remove()
     if (result.error) {
       Materialize.toast('Search is unavailable in this location',3000,'rounded red')
     } else {
@@ -112,12 +114,14 @@ function addScheduleItem(){
   var scheduleQuery = $('#schedule-query').val()
 
   if(scheduleQuery){
+    $('#stage2-submit').before('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
     $.ajax({
       method: "post",
       url: '/yelp/search',
       data: JSON.stringify({query: {location:whereTo, term: scheduleQuery}}),
       contentType: 'application/json'
     }).done(function(result){
+      $('#loady').remove()
       console.log("result",result);
       if (result.total) {
         var i = scheduleItems.length
