@@ -211,7 +211,7 @@ $('#stage2-submit').click(function(){
       }).done(function(result){
         console.log("businesses", !!result.businesses);
         console.log("result", result);
-        if (result.error) return startOver()
+        // if (result.error) return startOver()
         var businessMarkers = []
         lat = result.region.center.latitude
         lng = result.region.center.longitude
