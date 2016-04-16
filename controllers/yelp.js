@@ -14,7 +14,7 @@ module.exports = {
     })
     // - catch errors, if any - //
     .catch(function(err){
-      console.error(err)
+      res.json({error: err})
     })
   },
   // - business lookup action - //

@@ -42,10 +42,27 @@ var whereTo
 
 // switch between stages
 $('#submit-location').click(function(evt){
-  slideBetween('#stage1','#stage2')
   whereTo = $('#location_1').val()
   whereTo = whereTo.replace(/\s+/g, "+")
   whereTo = whereTo.replace(/^\s+|\s+$/g, "");
+  $('#s1-header').after('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
+
+  $.ajax({
+    method: "post",
+    url: '/yelp/search',
+    data: JSON.stringify({query: {location:whereTo}}),
+    contentType: 'application/json'
+  }).done(function(result){
+    $('#loady').remove()
+    if (result.error) {
+      Materialize.toast('Search is unavailable in this location',3000,'rounded red')
+    } else {
+      slideBetween('#stage1','#stage2')
+    }
+  })
+
+
+
   // query.forEach(function(userL){
   //   userL.query.location = whereTo
   // console.log(whereTo);
@@ -97,20 +114,35 @@ function addScheduleItem(){
   var scheduleQuery = $('#schedule-query').val()
 
   if(scheduleQuery){
-    var i = scheduleItems.length
-    // console.log("i", i);
-    query[i]={
-      query: {
-        term: scheduleQuery,
-        location: whereTo
+    $('#stage2-submit').before('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
+    $.ajax({
+      method: "post",
+      url: '/yelp/search',
+      data: JSON.stringify({query: {location:whereTo, term: scheduleQuery}}),
+      contentType: 'application/json'
+    }).done(function(result){
+      $('#loady').remove()
+      console.log("result",result);
+      if (result.total) {
+        var i = scheduleItems.length
+        // console.log("i", i);
+        query[i]={
+          query: {
+            term: scheduleQuery,
+            location: whereTo
+          }
+        }
+        scheduleItems.push(query[i])
+        $categoriesList.append('<div>Set times for "'+query[i].query.term+'":</div><br>')
+        var $slider = $('<div id="time'+i+'" class="time-slider"></div><br>')
+        $categoriesList.append($slider)
+        // console.log("$slider",$slider);
+        addSlider(i)
+      } else {
+        Materialize.toast('No results found for ' + scheduleQuery,3000,'rounded red')
       }
-    }
-    scheduleItems.push(query[i])
-    $categoriesList.append('<div>'+query[i].query.term+'</div><br>')
-    var $slider = $('<div id="time'+i+'" class="time-slider"></div><br>')
-    $categoriesList.append($slider)
-    // console.log("$slider",$slider);
-    addSlider(i)
+    })
+
   } else {
     Materialize.toast('Please enter a query', 2000, 'rounded red')
   }
@@ -183,6 +215,9 @@ $('#stage2-submit').click(function(){
         data: JSON.stringify(query[currentStep]),
         contentType: 'application/json'
       }).done(function(result){
+        console.log("businesses", !!result.businesses);
+        console.log("result", result);
+        // if (result.error) return startOver()
         var businessMarkers = []
         lat = result.region.center.latitude
         lng = result.region.center.longitude
@@ -197,7 +232,7 @@ $('#stage2-submit').click(function(){
             image_url: b.image_url,
             rating_img_url_small: b.rating_img_url_small,
             snippet_text: b.snippet_text,
-            display_address: b.location.display_address[0] + " " + b.location.display_address[2],
+            display_address: b.location.display_address[0] + " " + b.location.display_address[1],
             category: query[currentStep].query.term
           }
           // console.log("business foreach done");
@@ -229,7 +264,18 @@ $('#stage2-submit').click(function(){
         $('#loady').remove()
       })
       // console.log('populateList complete');
-    }
+    } // --- /populate list
+
+function startOver(){
+  times = []
+  sliders = []
+  scheduleItems = []
+  businesses = []
+  Materialize.toast('No results found', 3000, 'rounded red')
+  $('#stage1').show()
+  $('#stage2').show()
+  slideBetween('#stage3', '#stage1')
+}
 
     $('body').on('click','.add-button', function(evt){
       if (currentStep < (query.length)){

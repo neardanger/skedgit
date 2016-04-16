@@ -22,6 +22,7 @@ This website simplifies making itineraries by giving you realtime access to Yelp
 ### Third-party APIs
 
 - Yelp
+- Google Maps
 
 ### OAuth Providers
 

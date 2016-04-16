@@ -6,7 +6,6 @@ var
   User = require('../models/User.js'),
   Schedule = require("../models/Schedule.js")
 
-
   userRouter.get('/profile', isLoggedIn, function(req, res) {
     console.log("RENDERED PROFILE")
     User.findOne({_id: req.user._id})
@@ -16,9 +15,6 @@ var
                   user : user // get the user out of session and pass to template
               });
             })
-    // res.render('profile.ejs', {
-    //               user : req.user // get the user out of session and pass to template
-    //           })
           })
 
   userRouter.post('/profile', isLoggedIn, function(req, res){
