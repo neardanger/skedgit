@@ -39,6 +39,7 @@ v.addEventListener('play', function() {
   // console.log(this)
   v.currentTime = 13;
 }, false);
+
 v.addEventListener("timeupdate", function() {
     if (v.currentTime >= 136) {
         v.currentTime = 13
@@ -430,7 +431,7 @@ function fillPage() {
   })
 
   $('#directions-panel').before('<div id="map" class="center"></div>')
-  initMap(lat1[0],lng,null,true)  
+  initMap(lat1[lat1.length],lng,null,true)
 
   }
 
