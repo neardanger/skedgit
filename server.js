@@ -5,7 +5,7 @@ var app = express();
 
 
 
-//Redirect
+//Redirect links
 var config = require('./config/config');
 
 var port = process.env.PORT || config.development.port
