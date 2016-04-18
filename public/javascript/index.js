@@ -20,7 +20,15 @@ function slideBetween(el, next){
   })
   return $(el)
 }
-
+///// enter key on buttons
+    $('#location_1').keypress(function(e){
+      if(e.keyCode==13)
+      $('#submit-location').click();
+    });
+    $('#schedule-query').keypress(function(e){
+      if(e.keyCode==13)
+      $('#add-schedule-item').click();
+    });
 
 
 // stage 1  //////////////////////////////////////////////////////////
@@ -46,7 +54,6 @@ $('#submit-location').click(function(evt){
   whereTo = whereTo.replace(/\s+/g, "+")
   whereTo = whereTo.replace(/^\s+|\s+$/g, "");
   $('#s1-header').after('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
-
   $.ajax({
     method: "post",
     url: '/yelp/search',
@@ -202,8 +209,9 @@ $('#stage2-submit').click(function(){
     })
     var lat
     var lng
+    var lat1 = []
+    console.log(lat1);
     function populateList(){
-      // console.log("populateList called");
 
       $('#heading').after('<div class="progress" id="loady"><div class="indeterminate"></div></div>')
       // console.log("query[currentStep]",query[currentStep]);
@@ -219,6 +227,9 @@ $('#stage2-submit').click(function(){
         var businessMarkers = []
         lat = result.region.center.latitude
         lng = result.region.center.longitude
+        lat1.push(result.region.center.latitude)
+        console.log(lat1, "this is lat");
+        // lng1 = lng
         // console.log("result",result);
         // console.log("$ ajax done called");
         search.html('')
@@ -419,7 +430,7 @@ function fillPage() {
   })
 
   $('#directions-panel').before('<div id="map" class="center"></div>')
-  initMap(lat,lng,null,true)
+  initMap(lat1[0],lng,null,true)  
 
   }
 
