@@ -39,6 +39,7 @@ v.addEventListener('play', function() {
   // console.log(this)
   v.currentTime = 13;
 }, false);
+
 v.addEventListener("timeupdate", function() {
     if (v.currentTime >= 136) {
         v.currentTime = 13
@@ -243,7 +244,7 @@ $('#stage2-submit').click(function(){
             image_url: b.image_url,
             rating_img_url_small: b.rating_img_url_small,
             snippet_text: b.snippet_text,
-            display_address: b.location.display_address[0] + " " + b.location.display_address[1],
+            display_address: b.location.display_address[0] + " " + whereTo,
             category: query[currentStep].query.term
           }
           // console.log("business foreach done");
@@ -432,7 +433,7 @@ function fillPage() {
   })
 
   $('#directions-panel').before('<div id="map" class="center"></div>')
-  initMap(lat1[0],lng,null,true)  
+  initMap(lat1[lat1[0]],lng,null,true)
 
   }
 
