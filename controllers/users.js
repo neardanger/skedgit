@@ -27,6 +27,20 @@ faceBookLogout: function(req,res){
 
   },
 
+  twitterEmail: passport.authenticate('twitter',{ scope: ['email']}),
+
+  twitterLogin:
+    passport.authenticate('twitter', {
+    successRedirect: '/',
+    failureRedirect: '/'
+  }),
+
+  twitterLogout: function(req,res){
+    req.logout()
+    res.redirect('/')
+  },
+
+
 checkLogin: function loggedIn(req,res,next){
     if (req.isAuthenticated())
     return next()

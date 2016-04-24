@@ -2,6 +2,7 @@ var
 
   passport = require('passport'),
   FacebookStrategy = require('passport-facebook').Strategy,
+  TwitterStrategy = require('passport-twitter').Strategy,
   LocalStrategy    = require('passport-local').Strategy,
   User = require('../models/User.js'),
   configAuth = require('./auth.js')
@@ -43,6 +44,26 @@ newUser.save(function(err){
   })
 }))
 
+passport.use(new TwitterStrategy({
+  consumerKey: configAuth.twitter.consumerKey,
+  consumerSecret: configAuth.twitter.consumerSecret,
+  callbackURL: configAuth.twitter.callbackURL
+}, function(token, tokenSecret, profile, done){
+  console.log(profile)
+  User.findOne({'twitter.id': profile.id}, function(err, user){
+    if(err) console.log(err)
+    if(user) return done(null, user)
+    var newUser = new User()
+    newUser.twitter.id = profile.id
+    newUser.twitter.token = token
+    newUser.twitter.name = profile.displayName
+    newUser.twitter.username = profile.username
+    newUser.save(function(err){
+      if(err) console.log(err)
+      return done(null, newUser)
+    })
+  })
+}))
 
 
 
