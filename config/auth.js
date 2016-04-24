@@ -11,8 +11,7 @@ module.exports = {
       'consumerSecret': 	'eGJkyaXU3GSg5Pi6IJhqbVlnLGG2Liy7ig61L13O1HDBW0jfwn',
       'callbackURL': 'https://skedj.herokuapp.com/users/auth/twitter/callback',
       'profileFields': ['emails', 'displayName']
-      // 'callbackURL': 'http://127.0.0.1:3000/auth/twitter/callback'
-  //callbacl!
+
     }
 
 }

@@ -27,7 +27,7 @@ faceBookLogout: function(req,res){
 
   },
 
-  twitterAuth: passport.authenticate('twitter'),
+  twitterAuth: passport.authenticate('twitter',{ scope: ['email']}),
 
   twitterLogin:
     passport.authenticate('twitter', {

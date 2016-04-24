@@ -18,7 +18,8 @@ var userSchema = new mongoose.Schema({
     id: String,
     name: String,
     username: String,
-    token: String
+    token: String,
+    email: String
   },
 
   schedules: [{type: mongoose.Schema.Types.ObjectId, ref: 'Schedule'}]
