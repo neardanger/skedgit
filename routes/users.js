@@ -37,6 +37,7 @@ var
 
 // user Profile
   userRouter.get('/:id', userCtrl.profile)
+
 // facebook user oauth
   userRouter.get('/auth/facebook', userCtrl.facebookEmail)
 
@@ -46,7 +47,7 @@ var
 
 // twitter user oauth
 
-  userRouter.get('/auth/twitter', userCtrl.twitterAuth)
+  userRouter.get('/auth/twitter', userCtrl.twitterEmail)
 
   userRouter.get('/auth/twitter/callback',userCtrl.twitterLogin)
 

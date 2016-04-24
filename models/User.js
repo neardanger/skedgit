@@ -12,7 +12,6 @@ var userSchema = new mongoose.Schema({
     email: String
   },
 
-  schedules: [{type: mongoose.Schema.Types.ObjectId, ref: 'Schedule'}],
 
   twitter: {
     id: String,
