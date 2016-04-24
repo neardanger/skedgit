@@ -7,8 +7,8 @@ module.exports = {
   },
 
   'twitter': {
-      'consumerKey': 	'ErBfqSML7GNWWakJkqrnpKdqF',
-      'consumerSecret': 	'Tt776whQTC82rEMB7KFwzdOGzc9G7AX6FeywRhha2MT2LWpnj1',
+      'consumerKey': 	'cNVmDktWPINvqDQynG1rdrzw6',
+      'consumerSecret': 	'eGJkyaXU3GSg5Pi6IJhqbVlnLGG2Liy7ig61L13O1HDBW0jfwn',
       'callbackURL': 'https://skedj.herokuapp.com/users/auth/twitter/callback',
       'profileFields': ['emails', 'displayName']
       // 'callbackURL': 'http://127.0.0.1:3000/auth/twitter/callback'
