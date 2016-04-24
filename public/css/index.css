@@ -23,6 +23,14 @@ video#bgvid {
   padding: 5 15 5 15;
   border-radius: 3px;
 }
+
+#twitterbtn {
+  background: hsl(221, 39%, 44%);
+  color: white;
+  padding: 5 15 5 15;
+  border-radius: 3px;
+}
+
 #whitebg {
   background: rgba(255,255,255,0.8);
   padding: 20px;

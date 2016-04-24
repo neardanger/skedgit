@@ -37,13 +37,20 @@ var
 
 // user Profile
   userRouter.get('/:id', userCtrl.profile)
-// user oauth
+// facebook user oauth
   userRouter.get('/auth/facebook', userCtrl.facebookEmail)
 
   userRouter.get('/auth/facebook/callback', userCtrl.faceBookLogin)
 
   userRouter.get('/logout',userCtrl.faceBookLogout)
 
+// twitter user oauth
+
+  userRouter.get('/auth/twitter', userCtrl.twitterEmail)
+
+  userRouter.get('/auth/twitter/callback',userCtrl.twitterLogin)
+
+  userRouter.get('/logout',userCtrl.twitterLogout)
 
   function isLoggedIn(req, res, next) {
 

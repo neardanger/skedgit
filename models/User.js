@@ -11,7 +11,16 @@ var userSchema = new mongoose.Schema({
     token: String,
     email: String
   },
+
+  twitter: {
+    id: String,
+    name: String,
+    username: String,
+    token: String
+  },
+
   schedules: [{type: mongoose.Schema.Types.ObjectId, ref: 'Schedule'}]
+
 })
 
 
