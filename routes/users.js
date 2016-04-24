@@ -46,7 +46,7 @@ var
 
 // twitter user oauth
 
-  userRouter.get('/auth/twitter', userCtrl.twitterEmail)
+  userRouter.get('/auth/twitter', userCtrl.twitterAuth)
 
   userRouter.get('/auth/twitter/callback',userCtrl.twitterLogin)
 
