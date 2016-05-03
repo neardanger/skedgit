@@ -33,7 +33,7 @@ function slideBetween(el, next){
 
 // stage 1  //////////////////////////////////////////////////////////
 v = document.getElementsByTagName("video")[0]
-
+v.playbackRate = 0.5;
 // run the video in the background and loops it
 v.addEventListener('play', function() {
   // console.log(this)
