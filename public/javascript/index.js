@@ -33,16 +33,16 @@ function slideBetween(el, next){
 
 // stage 1  //////////////////////////////////////////////////////////
 v = document.getElementsByTagName("video")[0]
-v.playbackRate = 0.5;
+v.playbackRate = 0.7;
 // run the video in the background and loops it
 v.addEventListener('play', function() {
   // console.log(this)
-  v.currentTime = 13;
+  v.currentTime = 8;
 }, false);
 
 v.addEventListener("timeupdate", function() {
     if (v.currentTime >= 136) {
-        v.currentTime = 13
+        v.currentTime = 8
     }
 }, false)
 // users inputed location
