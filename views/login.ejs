@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="login col s6 offset-s3">
+    <h2 style="text-align:center; margin-top:60px">Login</h2>
+
+
+  <% if(message.length > 0) {%>
+    <div class="row center-align">
+      <div class="col s6 offset-s3 center-align ">
+        <div id="flash-alert" style="background-color: rgba(214, 61, 61, 0.64); color: rgb(154, 20, 13); width: 250px; height:40px"><%= message %></div>
+        </div>
+    </div>
+    <% } %>
+
+  <form action="/users/login" method="post" class="col s12">
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons">email</i>
+        <input name="email" type="email" class="validate" placeholder="Email">
+        <%# <label for="email">Email</label>%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <i class="material-icons">perm_identity</i>
+        <input name="password" type="password" class="validate" placeholder="Password">
+        <%# <label for="password">Password</label>%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 center-align">
+      <button class="btn-large waves-effect waves-blue waves-ripple" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
+        </div>
+        <div class="col s6 center-align ">
+          <a class="btn-large waves-effect waves-blue waves-ripple" href="/auth/twitter">Twitter Login</a>
+        </div>
+
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col s12 ">
+      <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
+        <span style="font-size: 20px; background-color: white; padding: 0 20px; font-style:italic">new user?</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 ">
+      <p style="text-align:center"><a class="btn waves-effect waves-blue waves-ripple" style="margin:0 auto; width:60%" href="/signup">Create Account</a></p>
+
+      <div class="row">
+        <div class="col s12" style="text-align:center">
+          <a href="/"><i class="material-icons medium">home</i></a>
+        </div>
+      </div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<script type="text/javascript">
+  function slideAlertUp(){
+    $('#flash-alert').slideUp(400)
+  }
+  var slideAlert = window.setTimeout(slideAlertUp, 3000)
+</script>
